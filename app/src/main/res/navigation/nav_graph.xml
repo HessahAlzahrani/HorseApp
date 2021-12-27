@@ -9,5 +9,14 @@
         android:id="@+id/startListFragment"
         android:name="com.example.horseapp.StartListFragment"
         android:label="fragment_start_list"
-        tools:layout="@layout/fragment_start_list" />
+        tools:layout="@layout/fragment_start_list" >
+        <action
+            android:id="@+id/action_startListFragment_to_addPromotionFragment"
+            app:destination="@id/addPromotionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPromotionFragment"
+        android:name="com.example.horseapp.addPromotion.uiLayer.AddPromotionFragment"
+        android:label="fragment_add_promotion"
+        tools:layout="@layout/fragment_add_promotion" />
 </navigation>

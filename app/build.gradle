@@ -13,6 +13,12 @@ android {
             keyAlias 'key0'
             keyPassword 'HOOOShooos'
         }
+        relese {
+            storeFile file('C:\\Users\\lenovo\\Desktop\\HorseApp\\key1.jks')
+            storePassword 'HOOOShooos'
+            keyAlias 'key0'
+            keyPassword 'HOOOShooos'
+        }
     }
     compileSdk 31
 
@@ -30,6 +36,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.relese
         }
     }
     compileOptions {

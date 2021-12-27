@@ -19,21 +19,21 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="59dp"
-        android:layout_height="57dp"
+        android:layout_width="64dp"
+        android:layout_height="59dp"
         android:layout_marginStart="16dp"
         android:src="@drawable/ic_baseline_account_box_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentContainerViewss"
-        app:layout_constraintVertical_bias="0.227" />
+        app:layout_constraintVertical_bias="0.365" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="54dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="268dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_baseline_person_remove_24"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/fragmentContainerViewss" />

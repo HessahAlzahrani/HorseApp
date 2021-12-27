@@ -14,11 +14,31 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private var binding: ActivityMainBinding? = null
-    val providers = arrayListOf(AuthUI.IdpConfig.PhoneBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build())
+
+
+
+    val navHostFragment = supportFragmentManager
+        .findFragmentById(R.id.startListFragment)as NavHostFragment
+
+
+
+   ///aryye of types of authentication like by phone, google, facebook
+    //AuthUI.IdpConfig.GoogleBuilder().build()
+    val providers = arrayListOf(
+
+       AuthUI.IdpConfig.EmailBuilder().build(),
+
+       AuthUI.IdpConfig.PhoneBuilder().build(),
+       AuthUI.IdpConfig.GoogleBuilder().build())
+
+
+   // take the providers then build
     val signInIntent = AuthUI.getInstance()
         .createSignInIntentBuilder()
         .setAvailableProviders(providers)
         .build()
+
+
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     ) { res ->
