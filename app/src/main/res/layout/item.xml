@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="itemOfhorses"
-            type="com.example.horseapp.dataLayer.HorsesDataModel" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemList_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
 
-    </data>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/itemList_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
     <TextView
         android:id="@+id/item_name"
         style="@style/Widget.MaterialComponents.TextView"
-        android:layout_width="198dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="268dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/item_price"
+        android:id="@+id/item_type"
         style="@style/Widget.MaterialComponents.TextView"
-        android:layout_width="116dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/item_name"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="268dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-medium"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,15 +34,13 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="141dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="204dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

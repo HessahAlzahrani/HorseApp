@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
-    private var binding: ActivityMainBinding? = null
+    private var binding :ActivityMainBinding?=null
 
 
     ///aryye of types of authentication like by phone, google, facebook

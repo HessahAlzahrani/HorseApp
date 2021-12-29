@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/nav_graph_id"
     app:startDestination="@id/startListFragment">
 
     <fragment
@@ -13,10 +13,29 @@
         <action
             android:id="@+id/action_startListFragment_to_addPromotionFragment"
             app:destination="@id/addPromotionFragment" />
+        <action
+            android:id="@+id/action_startListFragment_to_detailsPromotionFragment"
+            app:destination="@id/detailsPromotionFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPromotionFragment"
         android:name="com.example.horseapp.addPromotion.uiLayer.AddPromotionFragment"
         android:label="fragment_add_promotion"
         tools:layout="@layout/fragment_add_promotion" />
+    <fragment
+        android:id="@+id/detailsPromotionFragment"
+        android:name="com.example.horseapp.addPromotion.uiLayer.detailsPromotion.DetailsPromotionFragment"
+        android:label="fragment_detals_promotion"
+        tools:layout="@layout/fragment_detals_promotion">
+        <argument
+            android:name="item_name_argument"
+            app:argType="string" />
+        <argument
+            android:name="item_type_argument"
+            app:argType="string" />
+        <argument android:name="image_argument" />
+        <argument
+            android:name="sorte_arguments"
+            app:argType="string" />
+    </fragment>
 </navigation>
