@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startListFragment"
-        android:name="com.example.horseapp.StartListFragment"
+        android:name="com.example.horseapp.addPromotion.uiLayer.StartListFragment"
         android:label="fragment_start_list"
         tools:layout="@layout/fragment_start_list" >
         <action

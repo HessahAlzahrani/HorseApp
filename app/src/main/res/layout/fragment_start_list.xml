@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#BDBCBC"
     android:id="@+id/startListFragment"
-    tools:context=".StartListFragment"
+    tools:context=".addPromotion.uiLayer.StartListFragment"
     >
 
     <androidx.recyclerview.widget.RecyclerView

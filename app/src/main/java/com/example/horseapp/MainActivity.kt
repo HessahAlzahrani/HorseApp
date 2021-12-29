@@ -16,14 +16,9 @@ class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
 
 
-
-    val navHostFragment = supportFragmentManager
-        .findFragmentById(R.id.startListFragment)as NavHostFragment
-
-
-
-   ///aryye of types of authentication like by phone, google, facebook
+    ///aryye of types of authentication like by phone, google, facebook
     //AuthUI.IdpConfig.GoogleBuilder().build()
+
     val providers = arrayListOf(
 
        AuthUI.IdpConfig.EmailBuilder().build(),
@@ -46,12 +41,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
          binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-
 
 
         val navHostFragment = supportFragmentManager

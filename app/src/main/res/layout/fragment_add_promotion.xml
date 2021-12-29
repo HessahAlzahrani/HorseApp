@@ -21,14 +21,14 @@
 
     <EditText
         android:id="@+id/editText_TextPersonName_id"
-        android:layout_width="360dp"
-        android:layout_height="171dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="321dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="اضف التفاصيل "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.686"
+        app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/promotion_textView1_id" />
 

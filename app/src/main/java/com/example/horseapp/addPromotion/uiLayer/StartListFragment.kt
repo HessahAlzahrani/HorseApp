@@ -1,4 +1,4 @@
-package com.example.horseapp
+package com.example.horseapp.addPromotion.uiLayer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,8 +26,11 @@ class StartListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentStartListBinding.inflate(inflater, container, false)
+
         return binding?.root
     }
+
+
 
 
 
