@@ -13,9 +13,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
-    private var binding :ActivityMainBinding?=null
+    lateinit var binding :ActivityMainBinding
 
 
+
+    // sing in with firebase
     ///aryye of types of authentication like by phone, google, facebook
     //AuthUI.IdpConfig.GoogleBuilder().build()
 
@@ -44,10 +46,10 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
          binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
+      //  setContentView(R.layout.activity_main)
 
 
         val navHostFragment = supportFragmentManager
@@ -57,19 +59,20 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
 
 
-        binding?.imageView2?.setOnClickListener{
-            signInLauncher.launch(signInIntent)
-        }
+//        binding?.imageView2?.setOnClickListener{
+//            signInLauncher.launch(signInIntent)
+//        }
+//
+//        binding?.imageView?.setOnClickListener {
+//            signOut()
+//        }
 
-        binding?.imageView?.setOnClickListener {
-            signOut()
-        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
 
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {

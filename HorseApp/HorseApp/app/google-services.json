@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "639349791685",
+    "project_id": "horse-app-4dfdc",
+    "storage_bucket": "horse-app-4dfdc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639349791685:android:9cc8b0bd6b6a729fea49ac",
+        "android_client_info": {
+          "package_name": "com.example.horseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639349791685-cjfpojllagffes6u7ajqrn6k6u38jnvb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2i7Zt3BStbzlLjMliE5mEQ9d4qx9z8IQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639349791685-cjfpojllagffes6u7ajqrn6k6u38jnvb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

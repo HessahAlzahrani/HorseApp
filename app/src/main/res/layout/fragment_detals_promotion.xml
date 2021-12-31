@@ -12,19 +12,19 @@
         android:id="@+id/textView_content_detals_id"
         android:layout_width="328dp"
         android:layout_height="159dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="60dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintVertical_bias="0.657" />
 
     <TextView
         android:id="@+id/textView_sorting1_detailsFragment_id"
         android:layout_width="156dp"
         android:layout_height="59dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="84dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,34 +36,40 @@
         android:layout_height="60dp"
         android:layout_marginStart="68dp"
         android:layout_marginEnd="7dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="84dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView_sorting1_detailsFragment_id"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/image_profile_details_id"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="284dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginBottom="19dp"
+        android:id="@+id/image_profile_in_details_id"
+        android:layout_width="79dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="48dp"
         android:src="@drawable/ic_baseline_account_box_24"
-        app:layout_constraintBottom_toTopOf="@+id/name_profile_details_id"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/name_profile_details_id"
-        android:layout_width="270dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="169dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="286dp"
+        android:id="@+id/name_profile_in_details_id"
+        android:layout_width="157dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="64dp"
         android:text="name profile"
-        app:layout_constraintBottom_toTopOf="@+id/textView_sorting2_detailsFragment_id"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_horse_details_fragment_id"
+        android:layout_width="393dp"
+        android:layout_height="168dp"
+        android:layout_marginBottom="388dp"
+        android:src="@drawable/horse_herd_fog_nature_52500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

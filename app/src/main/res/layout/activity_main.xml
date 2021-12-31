@@ -4,38 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/browser_actions_title_color"
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewss"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="415dp"
-        android:layout_height="631dp"
+        android:layout_width="406dp"
+        android:layout_height="730dp"
         app:defaultNavHost="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="64dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/ic_baseline_account_box_24"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="404dp"
+        android:layout_height="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerViewss"
-        app:layout_constraintVertical_bias="0.365" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="54dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="264dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_person_remove_24"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerViewss" />
+        app:menu="@menu/bottomnavigtion"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

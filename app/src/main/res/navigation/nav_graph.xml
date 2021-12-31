@@ -3,25 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_id"
-    app:startDestination="@id/startListFragment">
+    app:startDestination="@id/startListFragment2">
 
-    <fragment
-        android:id="@+id/startListFragment"
-        android:name="com.example.horseapp.addPromotion.uiLayer.StartListFragment"
-        android:label="fragment_start_list"
-        tools:layout="@layout/fragment_start_list" >
-        <action
-            android:id="@+id/action_startListFragment_to_addPromotionFragment"
-            app:destination="@id/addPromotionFragment" />
-        <action
-            android:id="@+id/action_startListFragment_to_detailsPromotionFragment"
-            app:destination="@id/detailsPromotionFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addPromotionFragment"
-        android:name="com.example.horseapp.addPromotion.uiLayer.AddPromotionFragment"
-        android:label="fragment_add_promotion"
-        tools:layout="@layout/fragment_add_promotion" />
     <fragment
         android:id="@+id/detailsPromotionFragment"
         android:name="com.example.horseapp.addPromotion.uiLayer.detailsPromotion.DetailsPromotionFragment"
@@ -33,9 +16,36 @@
         <argument
             android:name="item_type_argument"
             app:argType="string" />
-        <argument android:name="image_argument" />
+        <argument android:name="image_url_argument"
+            app:argType="string" />
         <argument
             android:name="sorte_arguments"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailsPromotionFragment_to_startListFragment"
+            app:destination="@id/startListFragment" />
+        <action
+            android:id="@+id/action_detailsPromotionFragment_to_startListFragment2"
+            app:destination="@id/startListFragment2" />
+        <argument
+            android:name="item_Content_argument"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPromotionFragment"
+        android:name="com.example.horseapp.addPromotion.uiLayer.AddPromotionFragment"
+        android:label="fragment_add_promotion"
+        tools:layout="@layout/fragment_add_promotion" />
+    <fragment
+        android:id="@+id/startListFragment2"
+        android:name="com.example.horseapp.addPromotion.uiLayer.StartListFragment"
+        android:label="list"
+        tools:layout="@layout/fragment_start_list">
+        <action
+            android:id="@+id/action_startListFragment2_to_addPromotionFragment"
+            app:destination="@id/addPromotionFragment" />
+        <action
+            android:id="@+id/action_startListFragment2_to_detailsPromotionFragment"
+            app:destination="@id/detailsPromotionFragment" />
     </fragment>
 </navigation>

@@ -38,12 +38,7 @@ class StartListFragment : Fragment() {
         adapter.submitList(data.resultItemHours)
 
 
-
-
     }
-
-
-
 
 
     override fun onDestroy() {
