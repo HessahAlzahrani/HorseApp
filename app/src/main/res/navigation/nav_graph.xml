@@ -48,4 +48,14 @@
             android:id="@+id/action_startListFragment2_to_detailsPromotionFragment"
             app:destination="@id/detailsPromotionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.horseapp.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.horseapp.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

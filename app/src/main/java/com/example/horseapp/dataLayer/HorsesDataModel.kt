@@ -22,8 +22,35 @@ object data {
          // item2
                 HorsesDataModel(222,"mrwan","horse","English","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color what"),
         //item3
-        HorsesDataModel(223,"alshagab","mohrah","Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color brawn")
+        HorsesDataModel(223,"alshagab","mohrah","Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color brawn"),
 
-    )
+        HorsesDataModel(121, "nagm", "Hours", "Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color black"),
+
+        HorsesDataModel(121, "nagm", "Hours", "Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color black"),
+
+        HorsesDataModel(121, "nagm", "Hours", "Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color black"),
+
+        HorsesDataModel(223,"alshagab","mohrah","Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color brawn"),
+
+        HorsesDataModel(121, "nagm", "Hours", "Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color black"),
+
+        HorsesDataModel(223,"alshagab","mohrah","Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color brawn"),
+
+
+        HorsesDataModel(121, "nagm", "Hours", "Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color black"),
+
+        HorsesDataModel(223,"alshagab","mohrah","Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color brawn"),
+
+
+        HorsesDataModel(121, "nagm", "Hours", "Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color black"),
+
+        HorsesDataModel(121, "nagm", "Hours", "Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color black"),
+
+        HorsesDataModel(121, "nagm", "Hours", "Arabian","https://i.ibb.co/5YWgL1Y/horse-herd-fog-nature-52500.jpg","color black"),
+
+
+
+
+        )
 
 }
