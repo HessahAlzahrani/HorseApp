@@ -19,30 +19,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    // sing in with firebase
-    ///aryye of types of authentication like by phone, google, facebook
-    //AuthUI.IdpConfig.GoogleBuilder().build()
-
-    val providers = arrayListOf(
-
-       AuthUI.IdpConfig.EmailBuilder().build(),
-
-       AuthUI.IdpConfig.PhoneBuilder().build(),
-       AuthUI.IdpConfig.GoogleBuilder().build())
 
 
-   // take the providers then build
-    val signInIntent = AuthUI.getInstance()
-        .createSignInIntentBuilder()
-        .setAvailableProviders(providers)
-        .build()
 
-
-    private val signInLauncher = registerForActivityResult(
-        FirebaseAuthUIActivityResultContract()
-    ) { res ->
-        this.onSignInResult(res)
-    }
 
 
 
@@ -53,12 +32,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
       //  setContentView(R.layout.activity_main)
 
-val bottomNavigation = binding.bottomNavID
+val bottomNavigationId = binding.bottomNavID
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerViewss) as NavHostFragment
         navController = navHostFragment.navController
 
-        bottomNavigation.setupWithNavController(navController)
+        bottomNavigationId.setupWithNavController(navController)
         // Set up the action bar for use with the NavController
 //        setupActionBarWithNavController(navController)
 
@@ -79,19 +58,5 @@ val bottomNavigation = binding.bottomNavID
     }
 
 
-    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-        if (result.resultCode == RESULT_OK) {
-            val user = FirebaseAuth.getInstance().currentUser
-//            findNavController(R.id.action)
-            println(user?.uid)
-        } else {
-            println("none")
-        }
-    }
 
-    private fun signOut() {
-        AuthUI.getInstance()
-            .signOut(this)
-
-    }
 }

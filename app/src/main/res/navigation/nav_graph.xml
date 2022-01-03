@@ -35,7 +35,11 @@
         android:id="@+id/addPromotionFragment"
         android:name="com.example.horseapp.addPromotion.uiLayer.AddPromotionFragment"
         android:label="fragment_add_promotion"
-        tools:layout="@layout/fragment_add_promotion" />
+        tools:layout="@layout/fragment_add_promotion" >
+        <action
+            android:id="@+id/action_addPromotionFragment_to_detailsPromotionFragment"
+            app:destination="@id/detailsPromotionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/startListFragment2"
         android:name="com.example.horseapp.addPromotion.uiLayer.StartListFragment"
@@ -52,7 +56,14 @@
         android:id="@+id/profileFragment"
         android:name="com.example.horseapp.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_startListFragment2"
+            app:destination="@id/startListFragment2" />
+        <action
+            android:id="@+id/action_profileFragment_to_addPromotionFragment"
+            app:destination="@id/addPromotionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.horseapp.FavoriteFragment"

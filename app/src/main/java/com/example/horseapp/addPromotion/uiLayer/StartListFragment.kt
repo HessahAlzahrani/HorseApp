@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.example.horseapp.dataLayer.data
+import com.example.horseapp.dataLayer.HorsesDataSource
 import com.example.horseapp.databinding.FragmentStartListBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -35,7 +35,7 @@ class StartListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = ItemListAdapter(requireContext())
         binding?.recyclerViewId?.adapter = adapter
-        adapter.submitList(data.resultItemHours)
+        adapter.submitList(HorsesDataSource.resultItemHours)
 
 
     }
