@@ -20,7 +20,7 @@
     <ImageView
         android:id="@+id/image_name_in_profile_id"
         android:layout_width="88dp"
-        android:layout_height="83dp"
+        android:layout_height="86dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="40dp"
         android:src="@drawable/ic_baseline_account_box_24"

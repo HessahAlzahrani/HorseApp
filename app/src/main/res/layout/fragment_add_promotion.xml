@@ -6,150 +6,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFDFCFC"
+    android:foregroundTint="#CABFBF"
     tools:context=".addPromotion.uiLayer.AddPromotionFragment">
 
     <TextView
         android:id="@+id/promotion_textView1_id"
         android:layout_width="132dp"
         android:layout_height="28dp"
-        android:layout_marginStart="248dp"
+        android:layout_marginStart="116dp"
         android:text="محتوى اللإعلان"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <EditText
         android:id="@+id/editText_TextPersonName_id"
-        android:layout_width="321dp"
-        android:layout_height="147dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="353dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="112dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="اضف التفاصيل "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintHorizontal_bias="0.698"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/promotion_textView1_id" />
-
-    <TextView
-        android:id="@+id/sortingtextView_id"
-        android:layout_width="79dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="44dp"
-        android:text="نوع الخيل "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_TextPersonName_id" />
-
-    <RadioGroup
-        android:id="@+id/sorting2_group_id"
-        android:layout_width="124dp"
-        android:layout_height="233dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sorting2_TextView_id">
-
-        <RadioButton
-            android:id="@+id/horse_Radio_Button4_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="حصان" />
-
-        <RadioButton
-            android:id="@+id/mare_Radio_Button5_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="فرس" />
-
-        <RadioButton
-            android:id="@+id/pony_Radio_Button11_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="مُهر" />
-
-        <RadioButton
-            android:id="@+id/pony2_Radio_Button10_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="مُهرة" />
-
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/sorting1_group_id"
-        android:layout_width="121dp"
-        android:layout_height="163dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sortingtextView_id">
-
-        <RadioButton
-            android:id="@+id/arabi_radio_Button7_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="عربي" />
-
-        <RadioButton
-            android:id="@+id/engilsh_radio_Button8_id"
-            android:layout_width="106dp"
-            android:layout_height="48dp"
-            android:text="انجليزي" />
-
-        <RadioButton
-            android:id="@+id/radioButton16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="اخرى"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/sorting2_TextView_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="32dp"
-        android:text="تصنيف الخيل "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_TextPersonName_id" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="49dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="52dp"
-        android:src="@drawable/ic_baseline_add_to_photos_24"
+        android:layout_marginBottom="56dp"
+        android:src="@drawable/ic_baseline_add_box_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="#3B5336" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="52dp"
         android:layout_height="49dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="56dp"
         android:src="@drawable/ic_baseline_camera_alt_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="#3B5336" />
 
     <Button
         android:id="@+id/add_button_addFragment_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:text="Button"
+        android:layout_marginBottom="56dp"
+        android:text="@string/add_promtoin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="162dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_in_addFragment_id"
+        android:layout_width="384dp"
+        android:layout_height="260dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/elegant_horse_logo_icons_greenwaht"
+        app:layout_constraintBottom_toTopOf="@+id/add_button_addFragment_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_TextPersonName_id"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

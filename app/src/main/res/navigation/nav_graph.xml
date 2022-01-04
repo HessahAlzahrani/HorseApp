@@ -7,20 +7,15 @@
 
     <fragment
         android:id="@+id/detailsPromotionFragment"
-        android:name="com.example.horseapp.addPromotion.uiLayer.detailsPromotion.DetailsPromotionFragment"
+        android:name="com.example.horseapp.detailsPromotion.DetailsPromotionFragment"
         android:label="fragment_detals_promotion"
         tools:layout="@layout/fragment_detals_promotion">
         <argument
             android:name="item_name_argument"
             app:argType="string" />
-        <argument
-            android:name="item_type_argument"
-            app:argType="string" />
         <argument android:name="image_url_argument"
             app:argType="string" />
-        <argument
-            android:name="sorte_arguments"
-            app:argType="string" />
+
         <action
             android:id="@+id/action_detailsPromotionFragment_to_startListFragment"
             app:destination="@id/startListFragment" />
@@ -39,6 +34,9 @@
         <action
             android:id="@+id/action_addPromotionFragment_to_detailsPromotionFragment"
             app:destination="@id/detailsPromotionFragment" />
+        <action
+            android:id="@+id/action_addPromotionFragment_to_startListFragment2"
+            app:destination="@id/startListFragment2" />
     </fragment>
     <fragment
         android:id="@+id/startListFragment2"
