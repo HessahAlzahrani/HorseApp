@@ -3,8 +3,10 @@ package com.example.horseapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.horseapp.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -17,30 +19,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    // sing in with firebase
-    ///aryye of types of authentication like by phone, google, facebook
-    //AuthUI.IdpConfig.GoogleBuilder().build()
-
-    val providers = arrayListOf(
-
-       AuthUI.IdpConfig.EmailBuilder().build(),
-
-       AuthUI.IdpConfig.PhoneBuilder().build(),
-       AuthUI.IdpConfig.GoogleBuilder().build())
 
 
-   // take the providers then build
-    val signInIntent = AuthUI.getInstance()
-        .createSignInIntentBuilder()
-        .setAvailableProviders(providers)
-        .build()
 
-
-    private val signInLauncher = registerForActivityResult(
-        FirebaseAuthUIActivityResultContract()
-    ) { res ->
-        this.onSignInResult(res)
-    }
 
 
 
@@ -51,12 +32,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
       //  setContentView(R.layout.activity_main)
 
-
+val bottomNavigationId = binding.bottomNavID
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerViewss) as NavHostFragment
         navController = navHostFragment.navController
+
+        bottomNavigationId.setupWithNavController(navController)
         // Set up the action bar for use with the NavController
-        setupActionBarWithNavController(navController)
+//        setupActionBarWithNavController(navController)
 
 
 //        binding?.imageView2?.setOnClickListener{
@@ -75,18 +58,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-        if (result.resultCode == RESULT_OK) {
-            val user = FirebaseAuth.getInstance().currentUser
-            println(user?.uid)
-        } else {
-            println("none")
-        }
-    }
 
-    private fun signOut() {
-        AuthUI.getInstance()
-            .signOut(this)
-
-    }
 }

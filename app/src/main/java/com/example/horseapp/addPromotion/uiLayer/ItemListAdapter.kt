@@ -1,7 +1,6 @@
 package com.example.horseapp.addPromotion.uiLayer
 
 import android.content.Context
-import android.sax.StartElementListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -9,10 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.horseapp.addPromotion.uiLayer.detailsPromotion.DetailsPromotionFragment
 import com.example.horseapp.dataLayer.HorsesDataModel
 import com.example.horseapp.databinding.ItemBinding
-
 
 
 class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemListAdapter.ResultsItemViewHolder> (DiffCallback) {
@@ -23,7 +20,6 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
         //##################### link xmlItem with itemDataSource
         fun bind(views: HorsesDataModel) {
             binding.itemNameId.text = views.Data_horse_Name
-            binding.itemTypeId.text= views.Data_horse_Type
 
 
             //##################### link xmlItem with itemDataSource
@@ -59,16 +55,13 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
 
 
         // make Item like button
-        holder.binding.itemListId.setOnClickListener{
+        holder.binding.imageView3Id.setOnClickListener{
 
             val actionForNafigatArgument =
                 StartListFragmentDirections.actionStartListFragment2ToDetailsPromotionFragment(
                     itemNameArgument = listProject.Data_horse_Name,
-                    itemTypeArgument = listProject.Data_horse_Type,
-                    sorteArguments = listProject.Data_horse_Sorting,
                     imageUrlArgument = listProject.Data_horse_image,
                     itemContentArgument = listProject.data_horse_Content
-
                 )
             holder.itemView.findNavController().navigate(actionForNafigatArgument)
         }

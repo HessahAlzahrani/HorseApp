@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.horseapp.dataLayer.data
+import com.example.horseapp.dataLayer.HorsesDataSource
 import com.example.horseapp.databinding.FragmentStartListBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -19,7 +20,8 @@ import com.google.firebase.ktx.Firebase
 class StartListFragment : Fragment() {
 
     private var binding: FragmentStartListBinding? = null
-
+    //add viewModel :
+    private val horsesViewModel: HorsesViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -35,7 +37,15 @@ class StartListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = ItemListAdapter(requireContext())
         binding?.recyclerViewId?.adapter = adapter
-        adapter.submitList(data.resultItemHours)
+
+        //use all item in viewmodel
+        horsesViewModel.allItemfromdatasuorse.observe(viewLifecycleOwner, {
+            adapter.submitList(it)
+        })
+
+
+        //from data sours directly :
+//        adapter.submitList(HorsesDataSource.resultItemHours)
 
 
     }
