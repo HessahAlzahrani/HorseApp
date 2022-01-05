@@ -25,6 +25,9 @@
         <argument
             android:name="item_Content_argument"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailsPromotionFragment_to_showProfileFragment"
+            app:destination="@id/showProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPromotionFragment"
@@ -67,4 +70,9 @@
         android:name="com.example.horseapp.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/showProfileFragment"
+        android:name="com.example.horseapp.showProfileFragment"
+        android:label="fragment_show_profile"
+        tools:layout="@layout/fragment_show_profile" />
 </navigation>

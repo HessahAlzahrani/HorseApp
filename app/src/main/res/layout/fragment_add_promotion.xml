@@ -6,51 +6,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFDFCFC"
-    android:foregroundTint="#CABFBF"
+    android:foregroundTint="#B39027"
     tools:context=".addPromotion.uiLayer.AddPromotionFragment">
 
     <TextView
         android:id="@+id/promotion_textView1_id"
-        android:layout_width="132dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="116dp"
+        android:layout_width="190dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="108dp"
         android:text="محتوى اللإعلان"
+        android:textColor="#1A2C16"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <EditText
         android:id="@+id/editText_TextPersonName_id"
         android:layout_width="353dp"
         android:layout_height="114dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="اضف التفاصيل "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.698"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/promotion_textView1_id" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/icon_add_photo_G_id"
         android:layout_width="49dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="32dp"
         android:src="@drawable/ic_baseline_add_box_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:tint="#3B5336" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/icon_open_camera_id"
         android:layout_width="52dp"
         android:layout_height="49dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="28dp"
         android:src="@drawable/ic_baseline_camera_alt_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +61,7 @@
         android:id="@+id/add_button_addFragment_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="28dp"
         android:text="@string/add_promtoin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,17 +80,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView_in_addFragment_id"
-        android:layout_width="384dp"
-        android:layout_height="260dp"
-        android:layout_marginBottom="40dp"
+    <ImageSwitcher
+        android:id="@+id/ImageSwitcher_in_addFragment_id"
+        android:layout_width="355dp"
+        android:layout_height="219dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/elegant_horse_logo_icons_greenwaht"
-        app:layout_constraintBottom_toTopOf="@+id/add_button_addFragment_id"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_TextPersonName_id"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_TextPersonName_id" />
+
+    <ImageView
+        android:id="@+id/icon_NXET_id"
+        android:layout_width="53dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="120dp"
+        android:src="@drawable/ic_baseline_navigate_next_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImageSwitcher_in_addFragment_id" />
+
+    <ImageView
+        android:id="@+id/icon_Previous_id"
+        android:layout_width="56dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/ic_baseline_navigate_before_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImageSwitcher_in_addFragment_id" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

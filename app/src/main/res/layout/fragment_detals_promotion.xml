@@ -5,27 +5,26 @@
     android:id="@+id/detals_fragment_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDFCFC"
+    android:background="#E5F4E5"
     tools:context=".detailsPromotion.DetailsPromotionFragment">
 
     <TextView
         android:id="@+id/textView_content_detals_id"
-        android:layout_width="329dp"
-        android:layout_height="73dp"
+        android:layout_width="314dp"
+        android:layout_height="75dp"
         android:layout_marginStart="52dp"
-        android:text="TextView"
+        android:text="detals horses and description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id" />
 
     <ImageView
         android:id="@+id/image_profile_in_details_id"
-        android:layout_width="81dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="36dp"
-        android:src="@drawable/ic_baseline_account_box_24"
+        android:layout_width="114dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="44dp"
+        android:src="@drawable/img_20220104_215544"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,31 +32,31 @@
         android:id="@+id/name_profile_in_details_id"
         android:layout_width="157dp"
         android:layout_height="24dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="36dp"
         android:text="name user"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView_horse_details_fragment_id"
-        android:layout_width="290dp"
-        android:layout_height="164dp"
-        android:layout_marginBottom="336dp"
+        android:layout_width="305dp"
+        android:layout_height="192dp"
+        android:layout_marginBottom="268dp"
         android:src="@drawable/horse_herd_fog_nature_52500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.584"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView_details_name_horses_id"
-        android:layout_width="170dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="48dp"
+        android:layout_width="182dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="44dp"
         android:text="nameHorses"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_profile_in_details_id" />
+        app:layout_constraintTop_toBottomOf="@+id/image_profile_in_details_id" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
