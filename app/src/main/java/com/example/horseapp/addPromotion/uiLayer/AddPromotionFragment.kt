@@ -23,7 +23,7 @@ import java.io.File
 
 
 private const val Request_code = 0
-private lateinit var photoFile: File
+private var photoFile: File = File.createTempFile("image/photo/image", ".jpg", File("com.example.horseapp"))
 
 class AddPromotionFragment : Fragment() {
     private var binding: FragmentAddPromotionBinding? = null
@@ -46,7 +46,7 @@ class AddPromotionFragment : Fragment() {
 
     private fun pickImagesIntint() {
         val intent = Intent()
-
+        Log.e("TAG", "pickImagesIntint: in", )
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.action = Intent.ACTION_GET_CONTENT
@@ -54,17 +54,12 @@ class AddPromotionFragment : Fragment() {
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
+        Log.e("TAG", "onActivityResult: in", )
         if (requestCode == PICK_IMAGES_CODE) {
 
-            if (requestCode == Activity.RESULT_OK) {
-
+           // if (requestCode == Activity.RESULT_OK) {
                 if (data!!.clipData != null) {
 
                     /** picked multiple images
@@ -87,6 +82,7 @@ class AddPromotionFragment : Fragment() {
                     position = 0
                 } else {
                     /**pick single image*/
+
                     val imageUri = data.data
                     //set image to image switcher
                     binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageUri)
@@ -94,11 +90,13 @@ class AddPromotionFragment : Fragment() {
                 }
 
 
-            }
+                // }
+         //   }
         }
-        if (requestCode == Request_code && requestCode == Activity.RESULT_OK) {
+        if (requestCode == Request_code ) {
+            Log.e("TAG", "onActivityResult: in if Bitmap", )
             val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
-           // binding?.ImageSwitcherInAddFragmentId?.set(takenImage)
+            // binding?.ImageSwitcherInAddFragmentId?.set(takenImage)
 
         } else {
             super.onActivityResult(requestCode, resultCode, data)
@@ -128,7 +126,7 @@ class AddPromotionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         images = ArrayList()
         binding?.addButtonAddFragmentId?.setOnClickListener {
-
+            Log.e("TAG", "onViewCreated: in", )
 
             val name = binding?.editTextTextPersonNameId?.text.toString()
 
@@ -179,8 +177,7 @@ class AddPromotionFragment : Fragment() {
 //            val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //
 //            startActivityForResult(camera_intent, pic_id)
-
-
+            Log.e("TAG", "onViewCreated: cameraID", )
                 val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 if (takePictureIntent.resolveActivity(this.requireContext().packageManager) != null) {
                     startActivityForResult(takePictureIntent, Request_code)
@@ -198,7 +195,6 @@ class AddPromotionFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
         // garbage collector
         binding = null
     }

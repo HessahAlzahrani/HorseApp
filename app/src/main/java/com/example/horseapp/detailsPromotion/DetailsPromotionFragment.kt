@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.horseapp.R
@@ -36,7 +37,7 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
 
 
 
-//            binding!!.imageViewHorseDetailsFragmentId.setImageURI(navigationArgs.imageArgument.toUri())
+//           binding!!.imageViewHorseDetailsFragmentId.setImageURI(navigationArgs.imageArgument.toUri())
 
 
             // thes for view image in fragment from dataSuors
@@ -49,13 +50,18 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
             binding?.apply {
 
 
-  //  index = it?.getInt("postion")
+                // for make index .. index = it?.getInt("position")
+                textViewContentDetalsId.text = it?.getString("itemNameArgument")
+                textViewContentDetalsId.text = it?.getString("sorteArguments")
+            }
 
-    textViewContentDetalsId.text = (it?.getString("itemNameArgument"))
-    textViewContentDetalsId.text = it?.getString("sorteArguments")
-
-
-}
+        }
+                /***
+                 *  make photo button action for profile Show
+                 *  */
+        binding?.imageProfileInDetailsId?.setOnClickListener{
+            val action = DetailsPromotionFragmentDirections.actionDetailsPromotionFragmentToShowProfileFragment()
+            findNavController().navigate(action)
         }
     }
 }

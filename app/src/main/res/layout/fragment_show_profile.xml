@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".showProfileFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewNameUserShow_id"
+            android:layout_width="123dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="36dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewUserProfailShow_id"
+            android:layout_width="218dp"
+            android:layout_height="201dp"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/img_20220104_215544"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewUserProfilecontentShow_id"
+            android:layout_width="363dp"
+            android:layout_height="100dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.437"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="253dp" />
+
+        <TextView
+            android:id="@+id/textViewCityUserProfilShow_id"
+            android:layout_width="124dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameUserShow_id"
+            tools:layout_editor_absoluteX="23dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
