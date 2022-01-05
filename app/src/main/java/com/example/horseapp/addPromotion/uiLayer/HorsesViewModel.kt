@@ -26,6 +26,7 @@ var allItemfromdatasuorse = MutableLiveData<MutableList<HorsesDataModel>>()
     }
 
 
+
     fun addHorsefun (horsesDataModel: HorsesDataModel){
         allItemfromdatasuorse.value?.add(horsesDataModel)
 

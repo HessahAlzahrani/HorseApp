@@ -23,7 +23,7 @@
         android:id="@+id/bottomNavID"
         android:layout_width="413dp"
         android:layout_height="61dp"
-        android:background="#293925"
+        android:background="#162C11"
         app:itemIconTint="#9A7B1E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

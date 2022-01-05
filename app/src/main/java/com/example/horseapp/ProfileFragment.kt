@@ -114,12 +114,17 @@ context?.let { Glide.with(it).load(image).into(binding?.imageNameInProfileId!!) 
             val action = ProfileFragmentDirections.actionProfileFragmentToAddPromotionFragment()
             findNavController().navigate(action)
 
+          }
         binding?.buttonSignOutInProfileFragmintId?.setOnLongClickListener {
             signOut()
             Toast.makeText(this.requireContext(), "Signed out successfully", Toast.LENGTH_SHORT)
                 .show()
-            true }
+            true
+
+
         }
+
+
 
     }
 
