@@ -22,7 +22,7 @@ import com.example.horseapp.databinding.FragmentAddPromotionBinding
 import java.io.File
 
 
-private const val Request_code = 0
+private const val Request_code = 42
 private var photoFile: File = File.createTempFile("image/photo/image", ".jpg", File("com.example.horseapp"))
 
 class AddPromotionFragment : Fragment() {
@@ -33,7 +33,7 @@ class AddPromotionFragment : Fragment() {
     private val horsesViewModel: HorsesViewModel by activityViewModels()
 
     //store user picked images
-    private var images: ArrayList<Uri?>? = null
+//    private var images: ArrayList<Uri?>? = null
 
     //current position/index of selected image
     private var position = 0
@@ -46,7 +46,6 @@ class AddPromotionFragment : Fragment() {
 
     private fun pickImagesIntint() {
         val intent = Intent()
-        Log.e("TAG", "pickImagesIntint: in", )
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.action = Intent.ACTION_GET_CONTENT
@@ -54,44 +53,49 @@ class AddPromotionFragment : Fragment() {
 
     }
 
+
+    // fun for intent inside code (Request and result )
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.e("TAG", "onActivityResult: in", )
         if (requestCode == PICK_IMAGES_CODE) {
 
-           // if (requestCode == Activity.RESULT_OK) {
-                if (data!!.clipData != null) {
+            if (data!!.clipData != null) {
 
-                    /** picked multiple images
-                    // get number of picked images*/
+                /** picked multiple images
+                // get number of picked images*/
 
-                    val count = data.clipData!!.itemCount
-                    for (i in 0 until count) {
+                val count = data.clipData!!.itemCount
+                for (i in 0 until count) {
 
-                        val imageUri = data.clipData!!.getItemAt(i).uri
-                        /**
-                         * add image to list
-                         **/
-                        images!!.add(imageUri)
-                        Log.e("TAG", "onActivityResult: $images")
-                        Log.e("TAG", "onActivityResult: $imageUri")
+                    val imageUri = data.clipData!!.getItemAt(i).uri
+                    /**
+                     * add image to list
+                     **/
 
-                    }
-                    /**set first image from list to image switcher*/
-                    binding?.ImageSwitcherInAddFragmentId?.setImageURI(images!![0])
-                    position = 0
-                } else {
-                    /**pick single image*/
 
-                    val imageUri = data.data
-                    //set image to image switcher
-                    binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageUri)
-                    position = 0
+                    horsesViewModel.imageList!!.add(imageUri)
+                    Log.e("TAG", "onActivityResulttttttt: ${horsesViewModel.imageList}")
+
                 }
+                /**set first image from list to image switcher*/
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(horsesViewModel.imageList!![0])
+                position = 0
+            } else {
+                /**pick single image*/
+
+                val imageUri = data.data
+                //set image to image switcher
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageUri)
+                position = 0
+            }
 
 
-                // }
-         //   }
+            if (requestCode == Activity.RESULT_OK) {
+
+
+
+            }
         }
         if (requestCode == Request_code ) {
             Log.e("TAG", "onActivityResult: in if Bitmap", )
@@ -101,7 +105,6 @@ class AddPromotionFragment : Fragment() {
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
-
 
         if (requestCode == pic_id) {
             val photo = data?.extras
@@ -121,10 +124,8 @@ class AddPromotionFragment : Fragment() {
         return binding?.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        images = ArrayList()
         binding?.addButtonAddFragmentId?.setOnClickListener {
             Log.e("TAG", "onViewCreated: in", )
 
@@ -134,7 +135,7 @@ class AddPromotionFragment : Fragment() {
                 HorsesDataModel(
                     Data_horse_Name = name,
                     data_horse_Content = "ghhh",
-                    Data_horse_image = ""
+                    Data_horse_image = horsesViewModel.imageList?.get(0).toString()
                 )
             )
 
@@ -143,12 +144,10 @@ class AddPromotionFragment : Fragment() {
 
         binding?.ImageSwitcherInAddFragmentId?.setFactory { ImageView(this.requireActivity()) }
         binding?.iconNXETId?.setOnClickListener {
-            Log.e("TAG", "onViewCreated: $images")
 
-            if (position < images!!.size - 1) {
+            if (position < horsesViewModel.imageList!!.size - 1) {
                 position++
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(images!![position])
-                Log.e("TAG", "onViewCreated: $images")
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(horsesViewModel.imageList!![position])
             } else {
                 //No more images
                 Toast.makeText(this.requireContext(), "No More images ", Toast.LENGTH_SHORT)
@@ -159,7 +158,7 @@ class AddPromotionFragment : Fragment() {
 
             if (position > 0) {
                 position--
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(images!![position])
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(horsesViewModel.imageList!![position])
             } else {
                 //No more images
                 Toast.makeText(this.requireContext(), "No More images ", Toast.LENGTH_SHORT)
