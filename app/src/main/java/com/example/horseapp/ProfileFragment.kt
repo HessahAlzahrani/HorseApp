@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.horseapp.dataLayer.UserDataSource
 import com.example.horseapp.databinding.FragmentProfileBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -67,17 +66,17 @@ class ProfileFragment : Fragment() {
         binding?.textViewContentInProfileFragminteId?.text = user?.email
 
 
-        val image = UserDataSource.resultItemUser.get(0).data_User_image
-
-        binding?.textViewNameInProfileId?.text = UserDataSource.resultItemUser.get(0).data_User_Name
-        binding?.textViewContentInProfileFragminteId?.text =
-            UserDataSource.resultItemUser.get(0).data_User_contact
+//        val image = UserDataSource.resultItemUser.get(0).data_User_image
+//
+//        binding?.textViewNameInProfileId?.text = UserDataSource.resultItemUser.get(0).data_User_Name
+//        binding?.textViewContentInProfileFragminteId?.text =
+//            UserDataSource.resultItemUser.get(0).data_User_contact
 
 //        context?.let { Glide.with(it).load(navigationArgs.imageUrlArgument)
 //        .into(binding?.imageViewHorseDetailsFragmentId!!) }
 
 
-        context?.let { Glide.with(it).load(image).into(binding?.imageNameInProfileId!!) }
+//        context?.let { Glide.with(it).load(image).into(binding?.imageNameInProfileId!!) }
 
 
 //       binding?.buttonAddInProfileFragmintId?.setOnLongClickListener {

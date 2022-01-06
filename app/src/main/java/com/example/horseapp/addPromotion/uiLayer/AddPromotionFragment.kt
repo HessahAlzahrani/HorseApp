@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -20,6 +21,7 @@ import com.example.horseapp.R
 import com.example.horseapp.dataLayer.HorsesDataModel
 import com.example.horseapp.databinding.FragmentAddPromotionBinding
 import java.io.File
+import java.util.ArrayList
 
 
 private const val Request_code = 42
@@ -27,6 +29,7 @@ private var photoFile: File = File.createTempFile("image/photo/image", ".jpg", F
 
 class AddPromotionFragment : Fragment() {
     private var binding: FragmentAddPromotionBinding? = null
+    var imageList: ArrayList<String> = arrayListOf()
 
 
     //add viewModel :
@@ -54,7 +57,7 @@ class AddPromotionFragment : Fragment() {
     }
 
 
-    // fun for intent inside code (Request and result )
+    // fun for intent in code (Request and result  )
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.e("TAG", "onActivityResult: in", )
@@ -74,12 +77,11 @@ class AddPromotionFragment : Fragment() {
                      **/
 
 
-                    horsesViewModel.imageList!!.add(imageUri)
-                    Log.e("TAG", "onActivityResulttttttt: ${horsesViewModel.imageList}")
+                imageList.add(imageUri.toString())
 
                 }
                 /**set first image from list to image switcher*/
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(horsesViewModel.imageList!![0])
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList[0].toUri())
                 position = 0
             } else {
                 /**pick single image*/
@@ -126,16 +128,19 @@ class AddPromotionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        /// button add
         binding?.addButtonAddFragmentId?.setOnClickListener {
-            Log.e("TAG", "onViewCreated: in", )
+//            Log.e("TAG", "onViewCreated: in", )
 
             val name = binding?.editTextTextPersonNameId?.text.toString()
 
-            horsesViewModel.addHorsefun(
+            horsesViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(
                 HorsesDataModel(
                     Data_horse_Name = name,
                     data_horse_Content = "ghhh",
-                    Data_horse_image = horsesViewModel.imageList?.get(0).toString()
+                    Data_horse_image = imageList.toList()
                 )
             )
 
@@ -145,9 +150,9 @@ class AddPromotionFragment : Fragment() {
         binding?.ImageSwitcherInAddFragmentId?.setFactory { ImageView(this.requireActivity()) }
         binding?.iconNXETId?.setOnClickListener {
 
-            if (position < horsesViewModel.imageList!!.size - 1) {
+            if (position < imageList!!.size - 1) {
                 position++
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(horsesViewModel.imageList!![position])
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
             } else {
                 //No more images
                 Toast.makeText(this.requireContext(), "No More images ", Toast.LENGTH_SHORT)
@@ -158,7 +163,7 @@ class AddPromotionFragment : Fragment() {
 
             if (position > 0) {
                 position--
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(horsesViewModel.imageList!![position])
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
             } else {
                 //No more images
                 Toast.makeText(this.requireContext(), "No More images ", Toast.LENGTH_SHORT)

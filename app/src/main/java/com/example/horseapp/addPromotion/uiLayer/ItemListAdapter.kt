@@ -55,16 +55,16 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
 
 
         // make Item like button
-        holder.binding.imageView3Id.setOnClickListener{
-
-            val actionForNafigatArgument =
-                StartListFragmentDirections.actionStartListFragment2ToDetailsPromotionFragment(
-                    itemNameArgument = listProject.Data_horse_Name,
-                    imageUrlArgument = listProject.Data_horse_image,
-                    itemContentArgument = listProject.data_horse_Content
-                )
-            holder.itemView.findNavController().navigate(actionForNafigatArgument)
-        }
+//        holder.binding.imageView3Id.setOnClickListener{
+//
+//            val actionForNafigatArgument =
+//                StartListFragmentDirections.actionStartListFragment2ToDetailsPromotionFragment(
+//                    itemNameArgument = listProject.Data_horse_Name,
+//                    imageUrlArgument = listProject.Data_horse_image,
+//                    itemContentArgument = listProject.data_horse_Content
+//                )
+//            holder.itemView.findNavController().navigate(actionForNafigatArgument)
+//        }
 
     }
 

@@ -5,18 +5,21 @@
     android:id="@+id/detals_fragment_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5F4E5"
+    android:background="#FFFFFF"
     tools:context=".detailsPromotion.DetailsPromotionFragment">
 
     <TextView
         android:id="@+id/textView_content_detals_id"
-        android:layout_width="314dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="52dp"
+        android:layout_width="341dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="48dp"
         android:text="detals horses and description"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView_horse_details_fragment_id"
+        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintStart_toStartOf="@+id/imageView_horse_details_fragment_id"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id"
+        app:layout_constraintVertical_bias="0.163" />
 
     <ImageView
         android:id="@+id/image_profile_in_details_id"
@@ -26,14 +29,16 @@
         android:layout_marginEnd="44dp"
         android:src="@drawable/img_20220104_215544"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/name_profile_in_details_id"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/name_profile_in_details_id"
         android:layout_width="157dp"
         android:layout_height="24dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="64dp"
         android:text="name user"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,18 +50,22 @@
         android:layout_marginBottom="268dp"
         android:src="@drawable/horse_herd_fog_nature_52500"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.584"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/textView_details_name_horses_id"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/textView_details_name_horses_id" />
 
     <TextView
         android:id="@+id/textView_details_name_horses_id"
         android:layout_width="182dp"
         android:layout_height="47dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="112dp"
         android:text="nameHorses"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_horse_details_fragment_id"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_profile_in_details_id" />
+        app:layout_constraintTop_toBottomOf="@+id/image_profile_in_details_id"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
