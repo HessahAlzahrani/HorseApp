@@ -39,7 +39,7 @@ class StartListFragment : Fragment() {
         binding?.recyclerViewId?.adapter = adapter
 
         //use all item in viewmodel
-        horsesViewModel.allItemfromdatasuorse.observe(viewLifecycleOwner, {
+        horsesViewModel._horseslivedata.observe(viewLifecycleOwner, {
             Log.e("TAG", "onViewCreated1111111111111111: $it", )
             adapter.submitList(it)
         })

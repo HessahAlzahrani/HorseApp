@@ -37,13 +37,10 @@ class AddPromotionFragment : Fragment() {
 
     //store user picked images
 //    private var images: ArrayList<Uri?>? = null
-
     //current position/index of selected image
     private var position = 0
-
     //request code to pick images
     private var PICK_IMAGES_CODE = 0
-
     private val pic_id = 123
 
 
@@ -55,8 +52,6 @@ class AddPromotionFragment : Fragment() {
         startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE)
 
     }
-
-
     // fun for intent in code (Request and result  )
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -75,10 +70,7 @@ class AddPromotionFragment : Fragment() {
                     /**
                      * add image to list
                      **/
-
-
                 imageList.add(imageUri.toString())
-
                 }
                 /**set first image from list to image switcher*/
                 binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList[0].toUri())
@@ -93,7 +85,7 @@ class AddPromotionFragment : Fragment() {
             }
 
 
-            if (requestCode == Activity.RESULT_OK) {
+             if (requestCode == Activity.RESULT_OK) {
 
 
 
@@ -130,58 +122,56 @@ class AddPromotionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        /// button add
+        /// button (add) get formation and sanded for adapter
         binding?.addButtonAddFragmentId?.setOnClickListener {
 //            Log.e("TAG", "onViewCreated: in", )
 
-            val name = binding?.editTextTextPersonNameId?.text.toString()
+            val name = binding?.editTextHorsesNameID?.text.toString()
+            val contact = binding?.editTextContactID?.text.toString()
 
             horsesViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(
                 HorsesDataModel(
                     Data_horse_Name = name,
-                    data_horse_Content = "ghhh",
+                    data_horse_Content = contact,
                     Data_horse_image = imageList.toList()
                 )
             )
-
             findNavController().navigate(R.id.action_addPromotionFragment_to_startListFragment2)
         }
 
         binding?.ImageSwitcherInAddFragmentId?.setFactory { ImageView(this.requireActivity()) }
         binding?.iconNXETId?.setOnClickListener {
-
-            if (position < imageList!!.size - 1) {
-                position++
+            if (position < imageList!!.size - 1) { position++
                 binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
-            } else {
+            }
+            else {
                 //No more images
                 Toast.makeText(this.requireContext(), "No More images ", Toast.LENGTH_SHORT)
-                    .show()
+                .show()
             }
         }
+        // this ID icon for see photo before  ADD   < & > ====
         binding?.iconPreviousId?.setOnClickListener {
-
-            if (position > 0) {
-                position--
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
+            if (position > 0) { position--
+        binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
             } else {
-                //No more images
+                 //No more images
                 Toast.makeText(this.requireContext(), "No More images ", Toast.LENGTH_SHORT)
                     .show()
             }
         }
+        // the icon for add photo from GAILY
         binding?.iconAddPhotoGId?.setOnClickListener {
             pickImagesIntint()
         }
 
         /**
-         * camera cod intent
+         * code intent for opened camera
          * */
         binding?.iconOpenCameraId?.setOnClickListener {
-//            val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//
-//            startActivityForResult(camera_intent, pic_id)
-            Log.e("TAG", "onViewCreated: cameraID", )
+           // val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+           // startActivityForResult(camera_intent, pic_id)
+                Log.e("TAG", "onViewCreated: cameraID", )
                 val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 if (takePictureIntent.resolveActivity(this.requireContext().packageManager) != null) {
                     startActivityForResult(takePictureIntent, Request_code)

@@ -13,7 +13,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.*
@@ -23,21 +22,23 @@ class HorsesViewModel : ViewModel() {
     //var = listlivedata:listdatamodel
     var allItemfromdatasuorse = MutableLiveData<List<HorsesDataModel>>(listOf())
 
+    var _horseslivedata = MutableLiveData<List<HorsesDataModel>>()
+
 
     ///2 this (init) run when creating the class
     init {
-        getAllPromotionFromFirebaseForShow_FORUSINGINIT()
+        getAllPromotionFromFirebaseForShow()
+//        getAllPromotionFromFirebaseForShow_FORUSINGINIT()
     }
 
-
-    fun getAllPromotionFromFirebaseForShow_FORUSINGINIT(){
-        viewModelScope.launch {
-            getAllPromotionFromFirebaseForShow().collect{
-                Log.e("TAG", "getAllPromotionFromFirebaseForShow_FORUSINGINITtttttttttttttttt: $it", )
-                allItemfromdatasuorse.value = it
-            }
-        }
-    }
+//
+//    fun getAllPromotionFromFirebaseForShow_FORUSINGINIT(){
+//        viewModelScope.launch {
+//            getAllPromotionFromFirebaseForShow().collect{
+//                allItemfromdatasuorse.value = it
+//            }
+//        }
+//    }
 
     fun addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(horsesDataModel: HorsesDataModel) {
         viewModelScope.launch {
@@ -45,22 +46,22 @@ class HorsesViewModel : ViewModel() {
         }
     }
 
-    //fun add in db
+    //fun add in dataBase
     suspend fun addHorsefun(horsesDataModel: HorsesDataModel) {
 
         // call fun uploadImage() for run before fun addHorsefun() //###
         // this fun inside fun #####
-        uploadImage(horsesDataModel).collect {
+        uploadImage_TOfirebase(horsesDataModel).collect {
 
 
             // Add database in fireStore ######
             val db = Firebase.firestore
 
             val horse = hashMapOf(
-                "firbase_horse_name" to horsesDataModel.Data_horse_Name,
-                "firbase_horse_Content" to horsesDataModel.data_horse_Content,
+                "Data_horse_Name" to horsesDataModel.Data_horse_Name,
+                "data_horse_Content" to horsesDataModel.data_horse_Content,
                 // it = imageList url back from firebase storage
-                "firbase_horse_image" to it
+                "Data_horse_image" to it
             )
 
             db.collection("Horses")
@@ -79,69 +80,117 @@ class HorsesViewModel : ViewModel() {
     }
 
     // fun to upload image to fireStorage  : this fun with (async and await)
-    fun uploadImage(horsesDataModel: HorsesDataModel): Flow<List<String>> = callbackFlow {
+    fun uploadImage_TOfirebase(horsesDataModel: HorsesDataModel): Flow<List<String>> =
+        callbackFlow {
 
-        val storageRef = Firebase.storage.reference
-        val scope = async {
-            val imageList = mutableListOf<String>()
+            val storageRef = Firebase.storage.reference
+            val scope = async {
+                val imageList = mutableListOf<String>()
 
-            for (i in horsesDataModel.Data_horse_image) {
-                val reference =
-                    storageRef.child("images/${Calendar.getInstance().timeInMillis}")
-                // val imageUri takes the Uri after uploading
-                val imageUri = reference.putFile(i.toUri()).continueWithTask { task ->
-                    reference.downloadUrl
-                }.await()
+                for (i in horsesDataModel.Data_horse_image) {
+                    val reference =
+                        storageRef.child("images/${Calendar.getInstance().timeInMillis}")
+                    // val imageUri takes the Uri after uploading
+                    val imageUri = reference.putFile(i.toUri()).continueWithTask { task ->
+                        reference.downloadUrl
+                    }.await()
 
-                imageList.add(imageUri.toString())
+                    imageList.add(imageUri.toString())
+                }
+
+                return@async imageList
             }
+            trySend(scope.await())
 
-            return@async imageList
+            awaitClose { }
+
         }
-        trySend(scope.await())
-
-        awaitClose { }
-
-    }
 
 
-
-
-    //
-   suspend fun getAllPromotionFromFirebaseForShow(): Flow<List<HorsesDataModel>> = callbackFlow{
+    // 1 suspend  : make function for USED Carotene (sync & awet)
+    fun getAllPromotionFromFirebaseForShow() {
 
         try {
             val db = Firebase.firestore
+            //name collection in fireStore
             db.collection("Horses")
+                // SnapshotListener like liveData tListener for iny cheng
                 .addSnapshotListener { snapshot, exception ->
                     if (exception != null) {
                         return@addSnapshotListener
                     }
+                    //variable holder listDataModel
+                    var horsesListholddataromfirbaseASDATAMODEL = mutableListOf(HorsesDataModel())
 
-                    var list = mutableListOf<HorsesDataModel>()
                     snapshot?.documents?.forEach {
                         if (it.exists()) {
-                            Log.e("TAG", "getAllPromotionFromFirebaseForShownnn: $it", )
-                            val productList = it.toObject(HorsesDataModel::class.java)
-                            list.add(productList!!)
+                         //   Log.e("TAG", "show mePPPP : ${it}")
+
+                            val promotionListGetValueFromFirebaseAsDataModel = it.toObject(HorsesDataModel::class.java)
+
+                         Log.e("TAG", "show mePPPP : ${promotionListGetValueFromFirebaseAsDataModel}")
+
+                            horsesListholddataromfirbaseASDATAMODEL.add(promotionListGetValueFromFirebaseAsDataModel!!)
+//
+//                            _horseslivedata.value = listOf(HorsesDataModel(productList))
                         }
 
                     }
-                    trySend(list)
+
+                    _horseslivedata.value = horsesListholddataromfirbaseASDATAMODEL
+
+                    Log.e("TAG", "show mefffffffffffffffffffffffffffff : $horsesListholddataromfirbaseASDATAMODEL")
+
 
                 }
 
-            awaitClose {
-
-            }
-
-
         } catch (exception: Exception) {
-            Log.e("Exception", "getAllProducts: ${exception.message.toString()}")
+            Log.e(
+                "Exception",
+                "getAllProducts get all the promotion: ${exception.message.toString()}"
+            )
 
         }
 
-    }// end......
+    }// end.
+
+
+//    // 1 suspend  : make function for USED Carotene (sync & awet)
+//   suspend fun getAllPromotionFromFirebaseForShow(): Flow<List<HorsesDataModel>> = callbackFlow{
+//
+//        try {
+//            val db = Firebase.firestore
+//            //name collection in fireStore
+//            db.collection("Horses")
+//                    // SnapshotListener like liveData tListener for iny cheng
+//                .addSnapshotListener { snapshot, exception ->
+//                    if (exception != null) {
+//                        return@addSnapshotListener
+//                    }
+//                    //variable holder listDataModel
+//                    var list = mutableListOf<HorsesDataModel>()
+//                    snapshot?.documents?.forEach {
+//                        if (it.exists()) {
+//                            Log.e("TAG", "show me all the masege in app : $it", )
+//                            val productList = it.toObject(HorsesDataModel::class.java)
+//                            list.add(productList!!)
+//                        }
+//
+//                    }
+//                    trySend(list)
+//
+//                }
+//
+//            awaitClose {
+//
+//            }
+//
+//        } catch (exception: Exception) {
+//            Log.e("Exception", "getAllProducts get all the promotion: ${exception.message.toString()}")
+//
+//        }
+//
+//    }// end......
 }
 
 

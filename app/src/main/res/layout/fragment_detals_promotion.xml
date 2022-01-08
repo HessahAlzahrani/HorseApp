@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.797"
         app:layout_constraintStart_toStartOf="@+id/imageView_horse_details_fragment_id"
         app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id"
-        app:layout_constraintVertical_bias="0.163" />
+        app:layout_constraintVertical_bias="0.744" />
 
     <ImageView
         android:id="@+id/image_profile_in_details_id"
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ImageSwitcher
         android:id="@+id/imageView_horse_details_fragment_id"
         android:layout_width="305dp"
         android:layout_height="192dp"
@@ -67,5 +67,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_profile_in_details_id"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/icon_Previous_Id"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_baseline_navigate_before_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id" />
+
+    <ImageView
+        android:id="@+id/icon_NXET_Id"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="112dp"
+        android:src="@drawable/ic_baseline_navigate_next_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
