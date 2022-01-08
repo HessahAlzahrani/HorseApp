@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
 
 
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,10 +13,26 @@
 
 
     <TextView
+        android:id="@+id/textView_name_in_profile_id3"
+        android:layout_width="208dp"
+        android:layout_height="48dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="293dp" />
+
+    <TextView
+        android:id="@+id/textView_name_in_profile_id2"
+        android:layout_width="208dp"
+        android:layout_height="48dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="224dp" />
+
+    <TextView
         android:id="@+id/textViewadd_id_in_profile"
         android:layout_width="100dp"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="44dp"
         android:layout_marginBottom="100dp"
         android:text="@string/add_promtoin"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,40 +52,38 @@
         android:id="@+id/button_SignOut_in_profile_fragmint_id"
         android:layout_width="43dp"
         android:layout_height="44dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/ic_baseline_person_remove_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777"
+        app:layout_constraintVertical_bias="0.761"
         app:tint="#3B5336" />
 
     <TextView
         android:id="@+id/textView_name_in_profile_id"
         android:layout_width="208dp"
         android:layout_height="48dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="148dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintHorizontal_bias="0.788"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_content_in_profile_fragminte_id"
-        android:layout_width="336dp"
-        android:layout_height="122dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="332dp"
+        android:layout_height="81dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_name_in_profile_id" />
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="370dp" />
 
     <TextView
         android:id="@+id/textViewSignOut_id"
         android:layout_width="100dp"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="44dp"
         android:layout_marginBottom="172dp"
         android:text="@string/sign_out"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,11 +94,21 @@
         android:layout_width="42dp"
         android:layout_height="34dp"
 
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/ic_baseline_add_box_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_SignOut_in_profile_fragmint_id"
         app:tint="#3B5336" />
+
+    <ImageView
+        android:id="@+id/iCon_Setting_UserPrifile_ID"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="44dp"
+        android:src="@drawable/ic_baseline_settings_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

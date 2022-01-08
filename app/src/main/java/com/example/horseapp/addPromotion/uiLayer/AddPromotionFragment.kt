@@ -29,7 +29,7 @@ private var photoFile: File = File.createTempFile("image/photo/image", ".jpg", F
 
 class AddPromotionFragment : Fragment() {
     private var binding: FragmentAddPromotionBinding? = null
-    var imageList: ArrayList<String> = arrayListOf()
+    var imageList: MutableList<String> = mutableListOf()
 
 
     //add viewModel :
@@ -57,6 +57,8 @@ class AddPromotionFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         Log.e("TAG", "onActivityResult: in", )
         if (requestCode == PICK_IMAGES_CODE) {
+            Log.e("TAG", "sizeCountbb:", )
+
 
             if (data!!.clipData != null) {
 
@@ -64,13 +66,17 @@ class AddPromotionFragment : Fragment() {
                 // get number of picked images*/
 
                 val count = data.clipData!!.itemCount
+                Log.e("TAG", "sizeCount: $count", )
+
                 for (i in 0 until count) {
 
                     val imageUri = data.clipData!!.getItemAt(i).uri
                     /**
                      * add image to list
                      **/
-                imageList.add(imageUri.toString())
+                    Log.e("TAG", "sizehhhhhhhhhhhhhhhhhhh: $i", )
+
+                    imageList.add(imageUri.toString())
                 }
                 /**set first image from list to image switcher*/
                 binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList[0].toUri())
@@ -81,6 +87,8 @@ class AddPromotionFragment : Fragment() {
                 val imageUri = data.data
                 //set image to image switcher
                 binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageUri)
+
+                imageList.add(imageUri.toString())
                 position = 0
             }
 
@@ -94,7 +102,7 @@ class AddPromotionFragment : Fragment() {
         if (requestCode == Request_code ) {
             Log.e("TAG", "onActivityResult: in if Bitmap", )
             val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
-            // binding?.ImageSwitcherInAddFragmentId?.set(takenImage)
+            //binding?.ImageSwitcherInAddFragmentId?.set(takenImage)
 
         } else {
             super.onActivityResult(requestCode, resultCode, data)
@@ -129,11 +137,12 @@ class AddPromotionFragment : Fragment() {
             val name = binding?.editTextHorsesNameID?.text.toString()
             val contact = binding?.editTextContactID?.text.toString()
 
+            Log.e("TAG", "onViewCreated111: ${imageList}")
             horsesViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(
                 HorsesDataModel(
                     Data_horse_Name = name,
                     data_horse_Content = contact,
-                    Data_horse_image = imageList.toList()
+                    Data_horse_image = imageList
                 )
             )
             findNavController().navigate(R.id.action_addPromotionFragment_to_startListFragment2)

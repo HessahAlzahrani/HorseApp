@@ -1,5 +1,6 @@
 package com.example.horseapp
 
+import android.app.Notification
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.actionCodeSettings
 
 class ProfileFragment : Fragment() {
 
@@ -39,8 +41,9 @@ class ProfileFragment : Fragment() {
 
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
-    ) { res ->
-        this.onSignInResult(res)
+    )
+    {
+            res -> this.onSignInResult(res)
     }
 
 
@@ -104,16 +107,20 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(action)
 
         }
+
         binding?.buttonSignOutInProfileFragmintId?.setOnLongClickListener {
             signOut()
             Toast.makeText(this.requireContext(), "Signed out successfully", Toast.LENGTH_SHORT)
                 .show()
             true
-
-
         }
 
-    }
+        binding?.iConSettingUserPrifileID?.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_addAndEditProfileUserFragment)
+        }
+
+
+    }//end fun onViewCreated
 
     /**
     ////check if the user signed in or not #####

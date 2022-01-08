@@ -51,8 +51,16 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
         Log.e("TAG", "onBindViewHoldeffffffffffr: $listProject", )
     //    holder.binding.itemNameId.text = listProject.Data_horse_Name
 
+       Glide.with(context).load(listProject.Data_horse_image[0]).into(holder.binding.imageViewForShowinAdapterId)
+
+
 //       // library for tek phooooooooto from link and holder for xml
-//        Glide.with(context).load(listProject.Data_horse_image[0]).into(holder.binding.imageView3Id)
+//        if(!listProject.Data_horse_image.get(0).isNullOrEmpty()){
+//        //    Glide.with(context).load(listProject.Data_horse_image[0]).into(holder.binding.imageViewForShowinAdapterId)
+//
+//        }else{
+//
+//        }
 
 
         // make Item like button

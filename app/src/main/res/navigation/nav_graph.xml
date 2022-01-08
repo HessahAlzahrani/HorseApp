@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_profileFragment_to_addPromotionFragment"
             app:destination="@id/addPromotionFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_addAndEditProfileUserFragment"
+            app:destination="@id/addAndEditProfileUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -74,4 +77,13 @@
         android:name="com.example.horseapp.showProfileFragment"
         android:label="fragment_show_profile"
         tools:layout="@layout/fragment_show_profile" />
+    <fragment
+        android:id="@+id/addAndEditProfileUserFragment"
+        android:name="com.example.horseapp.AddAndEditProfileUserFragment"
+        android:label="fragment_add_and_edit"
+        tools:layout="@layout/fragment_add_and_edit_profil_User" >
+        <action
+            android:id="@+id/action_addAndEditProfileUserFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

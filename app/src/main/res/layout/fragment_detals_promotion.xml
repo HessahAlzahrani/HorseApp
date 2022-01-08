@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageSwitcher
+    <ImageView
         android:id="@+id/imageView_horse_details_fragment_id"
         android:layout_width="305dp"
         android:layout_height="192dp"
