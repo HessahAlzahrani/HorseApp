@@ -1,6 +1,7 @@
 package com.example.horseapp.addPromotion.uiLayer
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.horseapp.dataLayer.HorsesDataSource
 import com.example.horseapp.databinding.FragmentStartListBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -39,7 +39,8 @@ class StartListFragment : Fragment() {
         binding?.recyclerViewId?.adapter = adapter
 
         //use all item in viewmodel
-        horsesViewModel.allItemfromdatasuorse.observe(viewLifecycleOwner, {
+        horsesViewModel._horseslivedata.observe(viewLifecycleOwner, {
+            Log.e("TAG", "onViewCreated1111111111111111: $it", )
             adapter.submitList(it)
         })
 

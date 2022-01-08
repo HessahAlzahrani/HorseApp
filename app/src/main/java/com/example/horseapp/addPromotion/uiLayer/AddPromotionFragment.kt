@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -20,88 +21,92 @@ import com.example.horseapp.R
 import com.example.horseapp.dataLayer.HorsesDataModel
 import com.example.horseapp.databinding.FragmentAddPromotionBinding
 import java.io.File
+import java.util.ArrayList
 
 
-private const val Request_code = 0
+private const val Request_code = 42
 private var photoFile: File = File.createTempFile("image/photo/image", ".jpg", File("com.example.horseapp"))
 
 class AddPromotionFragment : Fragment() {
     private var binding: FragmentAddPromotionBinding? = null
+    var imageList: MutableList<String> = mutableListOf()
 
 
     //add viewModel :
     private val horsesViewModel: HorsesViewModel by activityViewModels()
 
     //store user picked images
-    private var images: ArrayList<Uri?>? = null
-
+//    private var images: ArrayList<Uri?>? = null
     //current position/index of selected image
     private var position = 0
-
     //request code to pick images
     private var PICK_IMAGES_CODE = 0
-
     private val pic_id = 123
 
 
     private fun pickImagesIntint() {
         val intent = Intent()
-        Log.e("TAG", "pickImagesIntint: in", )
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE)
 
     }
-
+    // fun for intent in code (Request and result  )
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.e("TAG", "onActivityResult: in", )
         if (requestCode == PICK_IMAGES_CODE) {
+            Log.e("TAG", "sizeCountbb:", )
 
-           // if (requestCode == Activity.RESULT_OK) {
-                if (data!!.clipData != null) {
 
-                    /** picked multiple images
-                    // get number of picked images*/
+            if (data!!.clipData != null) {
 
-                    val count = data.clipData!!.itemCount
-                    for (i in 0 until count) {
+                /** picked multiple images
+                // get number of picked images*/
 
-                        val imageUri = data.clipData!!.getItemAt(i).uri
-                        /**
-                         * add image to list
-                         **/
-                        images!!.add(imageUri)
-                        Log.e("TAG", "onActivityResult: $images")
-                        Log.e("TAG", "onActivityResult: $imageUri")
+                val count = data.clipData!!.itemCount
+                Log.e("TAG", "sizeCount: $count", )
 
-                    }
-                    /**set first image from list to image switcher*/
-                    binding?.ImageSwitcherInAddFragmentId?.setImageURI(images!![0])
-                    position = 0
-                } else {
-                    /**pick single image*/
+                for (i in 0 until count) {
 
-                    val imageUri = data.data
-                    //set image to image switcher
-                    binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageUri)
-                    position = 0
+                    val imageUri = data.clipData!!.getItemAt(i).uri
+                    /**
+                     * add image to list
+                     **/
+                    Log.e("TAG", "sizehhhhhhhhhhhhhhhhhhh: $i", )
+
+                    imageList.add(imageUri.toString())
                 }
+                /**set first image from list to image switcher*/
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList[0].toUri())
+                position = 0
+            } else {
+                /**pick single image*/
+
+                val imageUri = data.data
+                //set image to image switcher
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageUri)
+
+                imageList.add(imageUri.toString())
+                position = 0
+            }
 
 
-                // }
-         //   }
+             if (requestCode == Activity.RESULT_OK) {
+
+
+
+            }
         }
         if (requestCode == Request_code ) {
             Log.e("TAG", "onActivityResult: in if Bitmap", )
             val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
-            // binding?.ImageSwitcherInAddFragmentId?.set(takenImage)
+            //binding?.ImageSwitcherInAddFragmentId?.set(takenImage)
 
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
-
 
         if (requestCode == pic_id) {
             val photo = data?.extras
@@ -121,63 +126,61 @@ class AddPromotionFragment : Fragment() {
         return binding?.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        images = ArrayList()
+
+
+        /// button (add) get formation and sanded for adapter
         binding?.addButtonAddFragmentId?.setOnClickListener {
-            Log.e("TAG", "onViewCreated: in", )
+//            Log.e("TAG", "onViewCreated: in", )
 
-            val name = binding?.editTextTextPersonNameId?.text.toString()
+            val name = binding?.editTextHorsesNameID?.text.toString()
+            val contact = binding?.editTextContactID?.text.toString()
 
-            horsesViewModel.addHorsefun(
+            Log.e("TAG", "onViewCreated111: ${imageList}")
+            horsesViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(
                 HorsesDataModel(
                     Data_horse_Name = name,
-                    data_horse_Content = "ghhh",
-                    Data_horse_image = ""
+                    data_horse_Content = contact,
+                    Data_horse_image = imageList
                 )
             )
-
             findNavController().navigate(R.id.action_addPromotionFragment_to_startListFragment2)
         }
 
         binding?.ImageSwitcherInAddFragmentId?.setFactory { ImageView(this.requireActivity()) }
         binding?.iconNXETId?.setOnClickListener {
-            Log.e("TAG", "onViewCreated: $images")
-
-            if (position < images!!.size - 1) {
-                position++
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(images!![position])
-                Log.e("TAG", "onViewCreated: $images")
-            } else {
+            if (position < imageList!!.size - 1) { position++
+                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
+            }
+            else {
                 //No more images
                 Toast.makeText(this.requireContext(), "No More images ", Toast.LENGTH_SHORT)
-                    .show()
+                .show()
             }
         }
+        // this ID icon for see photo before  ADD   < & > ====
         binding?.iconPreviousId?.setOnClickListener {
-
-            if (position > 0) {
-                position--
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(images!![position])
+            if (position > 0) { position--
+        binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
             } else {
-                //No more images
+                 //No more images
                 Toast.makeText(this.requireContext(), "No More images ", Toast.LENGTH_SHORT)
                     .show()
             }
         }
+        // the icon for add photo from GAILY
         binding?.iconAddPhotoGId?.setOnClickListener {
             pickImagesIntint()
         }
 
         /**
-         * camera cod intent
+         * code intent for opened camera
          * */
         binding?.iconOpenCameraId?.setOnClickListener {
-//            val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//
-//            startActivityForResult(camera_intent, pic_id)
-            Log.e("TAG", "onViewCreated: cameraID", )
+           // val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+           // startActivityForResult(camera_intent, pic_id)
+                Log.e("TAG", "onViewCreated: cameraID", )
                 val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 if (takePictureIntent.resolveActivity(this.requireContext().packageManager) != null) {
                     startActivityForResult(takePictureIntent, Request_code)
