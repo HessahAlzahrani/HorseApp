@@ -6,6 +6,8 @@ plugins {
     id "androidx.navigation.safeargs.kotlin"
     id 'kotlin-android-extensions'
 }
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
@@ -41,6 +43,7 @@ android {
             signingConfig signingConfigs.relese
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -67,6 +70,7 @@ dependencies {
     implementation 'androidx.room:room-common:2.4.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.0.0'
     implementation 'com.google.firebase:firebase-functions-ktx:20.0.1'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -96,5 +100,8 @@ dependencies {
     //libraries for async, await and flow(coroutines)
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0'
+
+    //messaging
+    implementation 'com.google.firebase:firebase-messaging'
 
 }

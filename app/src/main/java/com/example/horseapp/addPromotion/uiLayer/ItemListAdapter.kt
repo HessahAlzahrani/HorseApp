@@ -17,19 +17,11 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
 
     class ResultsItemViewHolder(var binding : ItemBinding) :RecyclerView.ViewHolder(binding.root) {
 
-
-        //##################### link xmlItem with itemDataSource
+        /**
+        link xmlItem with itemDataSource
+         */
         fun bind(views: HorsesDataModel) {
             binding.itemNameId.text = views.Data_horse_Name
-
-
-
-            //##################### link xmlItem with itemDataSource
-            //  fun bind(views: ResultsItem) {
-            //               binding.resultItem = views
-            //               binding.executePendingBindings()
-            //          }
-            //      }
 
 
         }
@@ -44,32 +36,33 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
 
     override fun onBindViewHolder(holder: ResultsItemViewHolder, position: Int) {
 
-        //var listProject holds one object in the list of items
+        /**
+        // var listProject holds one object in the list of items
+         */
         val listProject= getItem(position)
         holder.bind(listProject)
 
         Log.e("TAG", "onBindViewHoldeffffffffffr: $listProject", )
-    //    holder.binding.itemNameId.text = listProject.Data_horse_Name
 
-       Glide.with(context).load(listProject.Data_horse_image[0]).into(holder.binding.imageViewForShowinAdapterId)
+        /**
+        // library for tek photos from link and holder for xml
+         */
+        Glide.with(context).load(listProject.Data_horse_image[0]).into(holder.binding.imageViewForShowinAdapterId)
 
 
-//       // library for tek phooooooooto from link and holder for xml
-//        if(!listProject.Data_horse_image.get(0).isNullOrEmpty()){
-//        //    Glide.with(context).load(listProject.Data_horse_image[0]).into(holder.binding.imageViewForShowinAdapterId)
-//
-//        }else{
+
 //
 //        }
 
-
-        // make Item like button
+        /**
+         *  // make Item like button
+         */
         holder.binding.imageViewForShowinAdapterId.setOnClickListener{
 
             val actionForNafigatArgument =
                 StartListFragmentDirections.actionStartListFragment2ToDetailsPromotionFragment(
                     itemNameArgument = listProject.Data_horse_Name,
-                    imageUrlArgument = listProject.Data_horse_image.toTypedArray(),
+                    imageUrlArgument = listProject.Data_horse_image.toTypedArray(),//toArray Images
                     itemContentArgument = listProject.data_horse_Content
                 )
             holder.itemView.findNavController().navigate(actionForNafigatArgument)
@@ -79,9 +72,10 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
 
 
 
-
-    //code diffcallback for comparison between : oldItem & newItem ##
+    /**    //code diffcallback for comparison between : oldItem & newItem ##
     //comparison by the name
+     */
+
     companion object DiffCallback : DiffUtil.ItemCallback<HorsesDataModel>() {
         override fun areItemsTheSame(oldItem: HorsesDataModel, newItem: HorsesDataModel): Boolean {
             return oldItem.Data_horse_Name == newItem.Data_horse_Name

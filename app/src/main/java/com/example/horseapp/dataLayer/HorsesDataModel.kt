@@ -17,6 +17,7 @@ data class UserDataModel(
     val data_User_image: String,
     val data_User_contact :String,
     val data_city_user :String,
+    val data_User_content:String
 
 )//end UserDataModel dataClass
 

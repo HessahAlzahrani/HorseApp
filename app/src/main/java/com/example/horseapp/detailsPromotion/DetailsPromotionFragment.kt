@@ -43,8 +43,6 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
 
         imageList = navigationArgs.imageUrlArgument.toList()
 
-        Log.e("TAG", "onViewCreated: it$imageList", )
-
 
        // Glide.with(this.requireContext()).load(imageList).into(binding?.imageViewHorseDetailsFragmentId)
         binding?.apply {
@@ -59,10 +57,16 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
                 Log.e("TAG", "onViewCreated:hhhh $imageList")
 
 
-                if (position < imageList.size - 1) { position++
-                    Log.e("TAG", "onViewCreated:ggggggggggggg $imageView")
-                    Glide.with(this@DetailsPromotionFragment.requireContext()).load(imageList[0]).into(binding?.imageViewHorseDetailsFragmentId!!)
+//                if (position < imageList.size) {
+//                    Glide.with(this@DetailsPromotionFragment.requireContext()).load(imageList[position]).into(binding?.imageViewHorseDetailsFragmentId!!)
+//                    position++
 
+
+
+                  if (position< imageList.size){
+                      Glide.with(this@DetailsPromotionFragment.requireContext()).load(imageList[position]).into(
+                          binding?.imageViewHorseDetailsFragmentId!!)
+                      position++
 
 
 //                    binding?.imageViewHorseDetailsFragmentId?.setImageURI(imageList!![position]?.toUri())
@@ -75,9 +79,12 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
             }
             // this ID icon for search photo before  ADD====
             binding?.iconPreviousId?.setOnClickListener {
-                if (position > 0) { position--
+                if (position > 0) {position--
 
-                    Glide.with(this@DetailsPromotionFragment.requireContext()).load(imageList[0]).into(binding?.imageViewHorseDetailsFragmentId!!)                } else {
+//                    Glide.with(this@DetailsPromotionFragment.requireContext()).load(imageList[position]).into(binding?.imageViewHorseDetailsFragmentId!!)
+
+                    Glide.with(this@DetailsPromotionFragment.requireContext()).load(imageViewHorseDetailsFragmentId)
+                } else {
                     //No more images
                     Toast.makeText(this@DetailsPromotionFragment.requireContext(), "No More images ", Toast.LENGTH_SHORT)
                         .show()

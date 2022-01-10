@@ -32,41 +32,25 @@ val bottomNavigationId = binding.bottomNavID
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerViewss) as NavHostFragment
         navController = navHostFragment.navController
-
         bottomNavigationId.setupWithNavController(navController)
-        // Set up the action bar for use with the NavController
-//        setupActionBarWithNavController(navController)
-
-
-//        binding?.imageView2?.setOnClickListener{
-//            signInLauncher.launch(signInIntent)
-//        }
-//
-//        binding?.imageView?.setOnClickListener {
-//            signOut()
-//        }
-
 
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+//    override fun onSupportNavigateUp(): Boolean {
+//        return navController.navigateUp() || super.onSupportNavigateUp()
+//    }
 
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            // function for get Result intent
+   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.e("TAG", "onActivityResult: RERE", )
-
-
     }
-
     var launchSomeActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             Log.e("TAG", "onActivityResult:1 RERE", )
             // your operation...
         }
-    }
+    }*/
 
 
 

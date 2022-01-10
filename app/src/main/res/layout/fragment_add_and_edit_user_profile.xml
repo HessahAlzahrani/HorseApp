@@ -17,7 +17,8 @@
             android:layout_marginTop="24dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:hint="Content"
+            android:backgroundTint="#F6F2F2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="260dp"
-            android:backgroundTint="#0B0707"
+            android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:hint="@string/your_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +45,8 @@
             android:layout_marginTop="28dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:hint="Contact"
+            android:backgroundTint="#F6F2F2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +60,7 @@
             android:backgroundTint="#F6F2F2"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:hint="your City"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +77,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageView_UsirProfile_inAddEdit_ID"
             android:layout_width="169dp"
             android:layout_height="157dp"
             android:layout_marginTop="36dp"
@@ -115,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
         <Button
-            android:id="@+id/buttonADD_UserProfile_AddEdit"
+            android:id="@+id/BUTTON_ADD_UserProfile_AddEdit"
             android:layout_width="208dp"
             android:layout_height="48dp"
             android:layout_marginTop="80dp"

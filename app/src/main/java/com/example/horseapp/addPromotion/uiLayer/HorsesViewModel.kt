@@ -19,13 +19,15 @@ import java.util.*
 
 class HorsesViewModel : ViewModel() {
 
-    //var = listlivedata:listdatamodel
+    /***
+    //var = listlivedata:listdatamode*  */
     var allItemfromdatasuorse = MutableLiveData<List<HorsesDataModel>>(listOf())
 
     var _horseslivedata = MutableLiveData<List<HorsesDataModel>>()
 
-
+    /***
     ///2 this (init) run when creating the class
+     *  */
     init {
         getAllPromotionFromFirebaseForShow()
 //        getAllPromotionFromFirebaseForShow_FORUSINGINIT()
@@ -45,27 +47,35 @@ class HorsesViewModel : ViewModel() {
             addHorsefun(horsesDataModel)
         }
     }
-
+    /***
     //fun add in dataBase
+     *  */
     suspend fun addHorsefun(horsesDataModel: HorsesDataModel) {
 
+        /***
         // call fun uploadImage() for run before fun addHorsefun() //###
         // this fun inside fun #####
+         *  */
+
         uploadImage_TOfirebase(horsesDataModel).collect {
 
-
+            /***
             // Add database in fireStore ######
+             *  */
             val db = Firebase.firestore
 
             val horse = hashMapOf(
                 "Data_horse_Name" to horsesDataModel.Data_horse_Name,
                 "data_horse_Content" to horsesDataModel.data_horse_Content,
+
                 // it = imageList url back from firebase storage
                 "Data_horse_image" to it
             )
 
             db.collection("Horses")
+                /***
                 // add  = generate key =id
+                 *  */
                 .add(horse)
                 .addOnSuccessListener { documentReference ->
                     Log.d("TAG", "DocumentSnapshot written with ID: ${documentReference.id}")
@@ -79,7 +89,9 @@ class HorsesViewModel : ViewModel() {
 
     }
 
+    /***
     // fun to upload image to fireStorage  : this fun with (async and await)
+     *  */
     fun uploadImage_TOfirebase(horsesDataModel: HorsesDataModel): Flow<List<String>> =
         callbackFlow {
 
@@ -107,41 +119,43 @@ class HorsesViewModel : ViewModel() {
         }
 
 
+    /***
     // 1 suspend  : make function for USED Carotene (sync & awet)
+     *  */
     fun getAllPromotionFromFirebaseForShow() {
 
         try {
             val db = Firebase.firestore
+            /***
             //name collection in fireStore
+             *  */
             db.collection("Horses")
+                /***
                 // SnapshotListener like liveData tListener for iny cheng
+                 *  */
                 .addSnapshotListener { snapshot, exception ->
                     if (exception != null) {
                         return@addSnapshotListener
                     }
-                    //variable holder listDataModel
+                    /***
+                    //variable holder listDataModel in viewModel
+                     *  */
                     var horsesListholddataromfirbaseASDATAMODEL = mutableListOf(HorsesDataModel())
 
                     snapshot?.documents?.forEach {
                         if (it.exists()) {
                          //   Log.e("TAG", "show mePPPP : ${it}")
-
                             val promotionListGetValueFromFirebaseAsDataModel = it.toObject(HorsesDataModel::class.java)
 
                          Log.e("TAG", "show mePPPP : ${promotionListGetValueFromFirebaseAsDataModel}")
 
                             horsesListholddataromfirbaseASDATAMODEL.add(promotionListGetValueFromFirebaseAsDataModel!!)
-//
-//                            _horseslivedata.value = listOf(HorsesDataModel(productList))
+
                         }
 
                     }
 
                     _horseslivedata.value = horsesListholddataromfirbaseASDATAMODEL
-
-                    Log.e("TAG", "show mefffffffffffffffffffffffffffff : $horsesListholddataromfirbaseASDATAMODEL")
-
-
                 }
 
         } catch (exception: Exception) {
@@ -153,7 +167,6 @@ class HorsesViewModel : ViewModel() {
         }
 
     }// end.
-
 
 //    // 1 suspend  : make function for USED Carotene (sync & awet)
 //   suspend fun getAllPromotionFromFirebaseForShow(): Flow<List<HorsesDataModel>> = callbackFlow{

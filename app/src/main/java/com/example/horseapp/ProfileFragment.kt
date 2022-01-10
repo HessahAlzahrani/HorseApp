@@ -32,13 +32,13 @@ class ProfileFragment : Fragment() {
         AuthUI.IdpConfig.GoogleBuilder().build()
     )
 
-    // take the providers then build
+    // build providers  like : ( AuthUI.IdpConfig.GoogleBuilder().build()........
     val signInIntent = AuthUI.getInstance()
         .createSignInIntentBuilder()
         .setAvailableProviders(providers)
         .build()
 
-
+        // this function for firebase Auth
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     )
@@ -52,10 +52,11 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        // if User sign in before or not
         if (FirebaseAuth.getInstance().currentUser == null) {
             signInLauncher.launch(signInIntent)
         }
-
+        //after sign in  binding result with fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding?.root
 
@@ -63,83 +64,45 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        // return the information of the current signed in user
+        //show information User of the current signed
         val user = FirebaseAuth.getInstance().currentUser
         binding?.textViewNameInProfileId?.text = user?.displayName
         binding?.textViewContentInProfileFragminteId?.text = user?.email
 
-
-//        val image = UserDataSource.resultItemUser.get(0).data_User_image
-//
-//        binding?.textViewNameInProfileId?.text = UserDataSource.resultItemUser.get(0).data_User_Name
-//        binding?.textViewContentInProfileFragminteId?.text =
-//            UserDataSource.resultItemUser.get(0).data_User_contact
-
-//        context?.let { Glide.with(it).load(navigationArgs.imageUrlArgument)
-//        .into(binding?.imageViewHorseDetailsFragmentId!!) }
-
-
-//        context?.let { Glide.with(it).load(image).into(binding?.imageNameInProfileId!!) }
-
-
-//       binding?.buttonAddInProfileFragmintId?.setOnLongClickListener {
-//            MaterialAlertDialogBuilder(this.requireContext())
-//                .setTitle("sdfgh")
-//                .setMessage("")
-//                .setCancelable(false)
-//                .setNegativeButton("No") { _, _ -> }
-//                .setPositiveButton("Yes") { _, _ ->}
-//
-//                ////  using function deleteItem() on Dialog #####
-//                .setPositiveButton("Yes") { _, _ ->
-//                  signOut()
-//                }
-//                .show()
-//
-//            true
-//        }
-        /**
-        // binding for navigation from profile for addFragment
-         */
-
+        // Button add promotion from profile
         binding?.imageViewAddInProfileId?.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToAddPromotionFragment()
             findNavController().navigate(action)
 
         }
-
+        /// sign out Button
         binding?.buttonSignOutInProfileFragmintId?.setOnLongClickListener {
             signOut()
             Toast.makeText(this.requireContext(), "Signed out successfully", Toast.LENGTH_SHORT)
                 .show()
             true
         }
-
+        /// Button Setting User Profile
         binding?.iConSettingUserPrifileID?.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_addAndEditProfileUserFragment)
         }
 
 
     }//end fun onViewCreated
-
-    /**
-    ////check if the user signed in or not #####
-     */
-    override fun onStart() {
-        super.onStart()
-
-
-    }
+//
+//    /**
+//    ////check if the user signed in or not #####
+//     */
+//    override fun onStart() {
+//        super.onStart()
 
 
+//    }
+
+        /// function Result sign in
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val user = FirebaseAuth.getInstance().currentUser
-//            findNavController(R.id.action)
-
-
-        } else {
-            println("none")
         }
     }
 
