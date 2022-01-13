@@ -13,12 +13,13 @@ data class HorsesDataModel(
 
 
 data class UserDataModel(
-    val data_User_Name: String,
-    val data_User_image: String,
-    val data_User_contact :String,
-    val data_city_user :String,
-    val data_User_content:String
+    val data_User_image: String = "",
+    val data_User_Name: String="",
+    val data_User_content:String = "",
+    val data_city_user :String = "",
+    val data_User_contact :String = ""
 
-)//end UserDataModel dataClass
+
+    )//end UserDataModel dataClass
 
 

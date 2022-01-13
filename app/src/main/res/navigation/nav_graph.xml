@@ -74,7 +74,7 @@
         tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/showProfileFragment"
-        android:name="com.example.horseapp.showProfileFragment"
+        android:name="com.example.horseapp.ShowProfileFragment"
         android:label="fragment_show_profile"
         tools:layout="@layout/fragment_show_profile" />
     <fragment

@@ -20,7 +20,8 @@ import java.util.*
 class HorsesViewModel : ViewModel() {
 
     /***
-    //var = listlivedata:listdatamode*  */
+    //var = listlivedata:listdatamod
+     *  */
     var allItemfromdatasuorse = MutableLiveData<List<HorsesDataModel>>(listOf())
 
     var _horseslivedata = MutableLiveData<List<HorsesDataModel>>()
@@ -41,7 +42,6 @@ class HorsesViewModel : ViewModel() {
 //            }
 //        }
 //    }
-
     fun addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(horsesDataModel: HorsesDataModel) {
         viewModelScope.launch {
             addHorsefun(horsesDataModel)
@@ -49,25 +49,21 @@ class HorsesViewModel : ViewModel() {
     }
     /***
     //fun add in dataBase
-     *  */
-    suspend fun addHorsefun(horsesDataModel: HorsesDataModel) {
-
+    ///1//
+     **/
+   private suspend fun addHorsefun(horsesDataModel : HorsesDataModel) {
         /***
-        // call fun uploadImage() for run before fun addHorsefun() //###
-        // this fun inside fun #####
-         *  */
+       // 3 // call fun uploadImage() after get link inside addHorsefun()   **/
 
-        uploadImage_TOfirebase(horsesDataModel).collect {
+        uploadImage_TOfirebaseAND_return_LINK(horsesDataModel).collect {
 
             /***
             // Add database in fireStore ######
              *  */
             val db = Firebase.firestore
-
-            val horse = hashMapOf(
+            val horse = hashMapOf(   //hashMapOf -> key & valeo
                 "Data_horse_Name" to horsesDataModel.Data_horse_Name,
                 "data_horse_Content" to horsesDataModel.data_horse_Content,
-
                 // it = imageList url back from firebase storage
                 "Data_horse_image" to it
             )
@@ -83,88 +79,70 @@ class HorsesViewModel : ViewModel() {
                 .addOnFailureListener { e ->
                     Log.w("TAG", "Error adding document", e)
                 }
-
-
         }
 
     }
 
     /***
     // fun to upload image to fireStorage  : this fun with (async and await)
+     await image for loading then make link for image and working fun
      *  */
-    fun uploadImage_TOfirebase(horsesDataModel: HorsesDataModel): Flow<List<String>> =
+   private fun uploadImage_TOfirebaseAND_return_LINK (horsesDataModel: HorsesDataModel): Flow<List<String>> =
         callbackFlow {
-
             val storageRef = Firebase.storage.reference
             val scope = async {
                 val imageList = mutableListOf<String>()
-
+                    //using (for loop ) because many images loading
                 for (i in horsesDataModel.Data_horse_image) {
                     val reference =
                         storageRef.child("images/${Calendar.getInstance().timeInMillis}")
                     // val imageUri takes the Uri after uploading
                     val imageUri = reference.putFile(i.toUri()).continueWithTask { task ->
                         reference.downloadUrl
-                    }.await()
+                    }.await() // await ( for )
 
                     imageList.add(imageUri.toString())
                 }
 
-                return@async imageList
+                return@async imageList // async
             }
-            trySend(scope.await())
+            trySend(scope.await()) // await val scope
 
             awaitClose { }
 
         }
 
+    // 1- create function
 
-    /***
-    // 1 suspend  : make function for USED Carotene (sync & awet)
-     *  */
-    fun getAllPromotionFromFirebaseForShow() {
+   private fun getAllPromotionFromFirebaseForShow() {
 
-        try {
-            val db = Firebase.firestore
-            /***
-            //name collection in fireStore
-             *  */
-            db.collection("Horses")
-                /***
-                // SnapshotListener like liveData tListener for iny cheng
-                 *  */
-                .addSnapshotListener { snapshot, exception ->
-                    if (exception != null) {
-                        return@addSnapshotListener
-                    }
-                    /***
-                    //variable holder listDataModel in viewModel
-                     *  */
-                    var horsesListholddataromfirbaseASDATAMODEL = mutableListOf(HorsesDataModel())
+       try {
+           val db = Firebase.firestore
+           /*** //name collection in fireStore **/
+           db.collection("Horses")
+               /*** // .addSnapshotListener() like liveData tListener for iny cheng *  */
+               .addSnapshotListener { snapshot, exception ->
+                   if (exception != null) {
+                       return@addSnapshotListener
+                   }
+                   /*** //variable holder listDataModel in viewModel*  */
+                   var horsesListholddataromfirbaseASDATAMODEL = mutableListOf(HorsesDataModel())
+                   snapshot?.documents?.forEach {
+                       if (it.exists()) {
+                           val promotionListGetValueFromFirebaseAsDataModel =
+                               it.toObject(HorsesDataModel::class.java)
 
-                    snapshot?.documents?.forEach {
-                        if (it.exists()) {
-                         //   Log.e("TAG", "show mePPPP : ${it}")
-                            val promotionListGetValueFromFirebaseAsDataModel = it.toObject(HorsesDataModel::class.java)
+                           horsesListholddataromfirbaseASDATAMODEL.add(
+                               promotionListGetValueFromFirebaseAsDataModel!!
+                           )
+                       }
+                   }
+                   _horseslivedata.value = horsesListholddataromfirbaseASDATAMODEL
+               }
+       } catch (exception: Exception) {
 
-                         Log.e("TAG", "show mePPPP : ${promotionListGetValueFromFirebaseAsDataModel}")
-
-                            horsesListholddataromfirbaseASDATAMODEL.add(promotionListGetValueFromFirebaseAsDataModel!!)
-
-                        }
-
-                    }
-
-                    _horseslivedata.value = horsesListholddataromfirbaseASDATAMODEL
-                }
-
-        } catch (exception: Exception) {
-            Log.e(
-                "Exception",
-                "getAllProducts get all the promotion: ${exception.message.toString()}"
-            )
-
-        }
+       }
+   }
 
     }// end.
 
@@ -204,6 +182,6 @@ class HorsesViewModel : ViewModel() {
 //        }
 //
 //    }// end......
-}
+//}
 
 

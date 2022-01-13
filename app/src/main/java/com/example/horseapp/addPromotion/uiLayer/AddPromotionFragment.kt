@@ -42,9 +42,13 @@ class AddPromotionFragment : Fragment() {
     //current position/index of selected image */
     private var position = 0
 
+
+
     /**     //request code to pick images */
     private var PICK_IMAGES_CODE = 0
     private val pic_id = 123
+
+
 
     /** code intent get photo from  */
 
@@ -56,8 +60,9 @@ class AddPromotionFragment : Fragment() {
         startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE)
 
     }
+
     /**     // fun for intent in code (Request and result  )*/
-    // fun for intent in code (Request and result  )
+    // fun for intent in code ( : result  )
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.e("TAG", "onActivityResult: in", )
@@ -70,7 +75,6 @@ class AddPromotionFragment : Fragment() {
                  * get number of picked images*/
 
                 val count = data.clipData!!.itemCount
-                Log.e("TAG", "sizeCount: $count", )
 
                 for (i in 0 until count) {
 
@@ -92,6 +96,7 @@ class AddPromotionFragment : Fragment() {
                 imageList.add(imageUri.toString())
                 position = 0
             }
+
              if (requestCode == Activity.RESULT_OK) {
 
             }
@@ -99,8 +104,6 @@ class AddPromotionFragment : Fragment() {
         if (requestCode == Request_code ) {
             Log.e("TAG", "onActivityResult: in if Bitmap", )
             val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
-            //binding?.ImageSwitcherInAddFragmentId?.set(takenImage)
-
         } else {
 
             super.onActivityResult(requestCode, resultCode, data)
@@ -109,6 +112,7 @@ class AddPromotionFragment : Fragment() {
         if (requestCode == pic_id) {
             val photo = data?.extras
                 ?.get("data") as Uri?
+
             /**
             // Set the image in imageview for display
              * */
@@ -176,7 +180,6 @@ class AddPromotionFragment : Fragment() {
         /**
         // the icon for add photo from GAILY
          * */
-
         binding?.iconAddPhotoGId?.setOnClickListener {
             pickImagesIntint()
         }
@@ -187,7 +190,6 @@ class AddPromotionFragment : Fragment() {
         binding?.iconOpenCameraId?.setOnClickListener {
            // val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
            // startActivityForResult(camera_intent, pic_id)
-                Log.e("TAG", "onViewCreated: cameraID", )
                 val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 if (takePictureIntent.resolveActivity(this.requireContext().packageManager) != null) {
                     startActivityForResult(takePictureIntent, Request_code)
@@ -205,7 +207,7 @@ class AddPromotionFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // garbage collector
+        // for memory lic
         binding = null
     }
 
