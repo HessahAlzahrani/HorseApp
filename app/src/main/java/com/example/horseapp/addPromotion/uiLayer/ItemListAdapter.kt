@@ -47,9 +47,13 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
         /**
         // library for tek photos from link and holder for xml
          */
-        Glide.with(context).load(listProject.Data_horse_image[0]).into(holder.binding.imageViewForShowinAdapterId)
-
-
+        if(listProject.Data_horse_image.size != 0) {
+            Glide.with(context).load(listProject.Data_horse_image[0])
+                .into(holder.binding.imageViewForShowinAdapterId)
+        }else{
+            Glide.with(context).load("https://firebasestorage.googleapis.com/v0/b/horse-app-4dfdc.appspot.com/o/images%2F1641669616481?alt=media&token=c259f9d1-d906-46f0-9ee2-ae14412ad568")
+                .into(holder.binding.imageViewForShowinAdapterId)
+        }
 
 //
 //        }

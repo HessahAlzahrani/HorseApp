@@ -78,8 +78,8 @@
 
         <ImageView
             android:id="@+id/imageView_UsirProfile_inAddEdit_ID"
-            android:layout_width="169dp"
-            android:layout_height="157dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginTop="36dp"
             android:src="@drawable/ic_baseline_image_24"
             app:layout_constraintEnd_toEndOf="parent"

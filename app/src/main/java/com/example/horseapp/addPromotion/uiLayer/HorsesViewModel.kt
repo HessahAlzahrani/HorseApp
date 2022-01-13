@@ -114,7 +114,7 @@ class HorsesViewModel : ViewModel() {
 
     // 1- create function
 
-   private fun getAllPromotionFromFirebaseForShow() {
+    fun getAllPromotionFromFirebaseForShow() {
 
        try {
            val db = Firebase.firestore

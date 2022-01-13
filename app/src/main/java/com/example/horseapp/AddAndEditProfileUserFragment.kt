@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.example.horseapp.addPromotion.uiLayer.UserProfileViewModel
 import com.example.horseapp.dataLayer.UserDataModel
 import com.example.horseapp.databinding.FragmentAddAndEditUserProfileBinding
@@ -38,8 +39,8 @@ class AddAndEditProfileUserFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         fileImageFromGAILY = data?.data!!
-        Log.e("TAG", "000000000000000000000000000000000000000000000000000000: $fileImageFromGAILY")
-        binding?.imageViewUsirProfileInAddEditID?.setImageURI(fileImageFromGAILY)
+        Glide.with(this.requireContext()).load(fileImageFromGAILY).circleCrop().into(binding?.imageViewUsirProfileInAddEditID!!)
+       // binding?.imageViewUsirProfileInAddEditID?.setImageURI(fileImageFromGAILY)
         fileImageFromGAILY.toString()
 
 
@@ -56,6 +57,18 @@ class AddAndEditProfileUserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        UserProfileViewModel.getUserscreateFunToCollSuspendFunction()
+
+        UserProfileViewModel._userInformation.observe(viewLifecycleOwner, {
+            binding?.editTextUserNameAddEditUserProfileID?.setText(it.data_User_Name)
+            binding?.editTextContentAddEdittUserProfileID?.setText(it.data_User_content)
+            binding?.editTextCityAddEdittUserProfileID?.setText(it.data_city_user)
+            binding?.editTextContactAddEdittUserProfileID?.setText(it.data_User_contact)
+
+            Glide.with(this.requireContext()).load(it.data_User_image).circleCrop().into(binding?.imageViewUsirProfileInAddEditID!!)
+
+        })
 
         binding?.BUTTONADDUserProfileAddEdit?.setOnClickListener {
 
