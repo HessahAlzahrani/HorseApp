@@ -5,7 +5,6 @@
     android:id="@+id/detals_fragment_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     tools:context=".detailsPromotion.DetailsPromotionFragment">
 
     <TextView
@@ -27,6 +26,7 @@
         android:layout_height="101dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="44dp"
+        android:visibility="gone"
         android:src="@drawable/img_20220104_215544"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -40,6 +40,8 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="64dp"
         android:text="name user"
+        android:visibility="gone"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

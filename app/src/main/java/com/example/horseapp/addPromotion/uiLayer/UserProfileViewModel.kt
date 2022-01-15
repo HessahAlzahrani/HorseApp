@@ -20,23 +20,22 @@ import java.util.*
 
 class UserProfileViewModel : ViewModel() {
 
-    var allItemfromdatasuorse = MutableLiveData<List<UserDataModel>>(listOf())
 
     val _Userlivedata = MutableLiveData<List<UserDataModel>>()
 
     val _userInformation = MutableLiveData<UserDataModel>()
     //1 // craete db in fierbase
-    private val databaseUserinfirebase = Firebase.firestore.collection(
-        " UserDataModel"
-    )
+//    private val databaseUserinfirebase = Firebase.firestore.collection(
+//        " UserDataModel"
+//    )
 
 
     fun addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(userDataModel: UserDataModel) {
         viewModelScope.launch {
             add_DB_USERfromFirebase(userDataModel)
-        }
+}
 
-    }
+}
 
     suspend fun add_DB_USERfromFirebase(userDataModel: UserDataModel) {
 
@@ -70,10 +69,6 @@ class UserProfileViewModel : ViewModel() {
             val reference =
                 storegeRifrensimages.child("imageUser/${Calendar.getInstance().timeInMillis}")
 
-            Log.e(
-                "TAG",
-                "uploadImage_TOFirebaseAND_return_LINK: ${userDataModel.data_User_image}"
-            )
             val imageUri = reference.putFile(userDataModel.data_User_image.toUri())
                 .continueWithTask { task ->
                     /// reference =====

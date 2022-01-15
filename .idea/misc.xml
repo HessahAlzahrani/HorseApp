@@ -20,7 +20,8 @@
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_add_and_edit.xml" value="0.25" />
-        <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_add_and_edit_user_profile.xml" value="0.25" />
+        <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_add_and_edit_user_profile.xml" value="0.22" />
+        <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_add_and_edit_user_profile_.xml" value="0.17255434782608695" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_add_promotion.xml" value="0.2" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_detals_promotion.xml" value="0.2" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_edit_profile.xml" value="0.16802536231884058" />
@@ -28,10 +29,11 @@
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_show_profile.xml" value="0.18" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/fragment_start_list.xml" value="0.1" />
-        <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/item.xml" value="0.22" />
+        <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/item.xml" value="0.1" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/menu_list_for_profile.xml" value="0.1875" />
-        <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/notification.xml" value="0.4091858037578288" />
+        <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/layout/notification.xml" value="0.3477272727272727" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/menu/bottomnavigtion.xml" value="0.1" />
+        <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/menu/menu_in_profile_fragment.xml" value="0.33" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2203125" />
         <entry key="..\:/Users/lenovo/Desktop/HorseApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2203125" />
       </map>

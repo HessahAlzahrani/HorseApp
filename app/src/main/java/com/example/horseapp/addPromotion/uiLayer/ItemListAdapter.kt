@@ -31,7 +31,7 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ResultsItemViewHolder {
         return ResultsItemViewHolder(
-            ItemBinding.inflate(LayoutInflater.from(parent.context)))
+            ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ResultsItemViewHolder, position: Int) {
@@ -41,8 +41,6 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
          */
         val listProject= getItem(position)
         holder.bind(listProject)
-
-        Log.e("TAG", "onBindViewHoldeffffffffffr: $listProject", )
 
         /**
         // library for tek photos from link and holder for xml
@@ -61,7 +59,7 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
         /**
          *  // make Item like button
          */
-        holder.binding.imageViewForShowinAdapterId.setOnClickListener{
+        holder.binding.horsesItemCard.setOnClickListener{
 
             val actionForNafigatArgument =
                 StartListFragmentDirections.actionStartListFragment2ToDetailsPromotionFragment(

@@ -52,21 +52,7 @@
             android:id="@+id/action_startListFragment2_to_detailsPromotionFragment"
             app:destination="@id/detailsPromotionFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.horseapp.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_startListFragment2"
-            app:destination="@id/startListFragment2" />
-        <action
-            android:id="@+id/action_profileFragment_to_addPromotionFragment"
-            app:destination="@id/addPromotionFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_addAndEditProfileUserFragment"
-            app:destination="@id/addAndEditProfileUserFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.horseapp.FavoriteFragment"
@@ -81,9 +67,9 @@
         android:id="@+id/addAndEditProfileUserFragment"
         android:name="com.example.horseapp.AddAndEditProfileUserFragment"
         android:label="fragment_add_and_edit"
-        tools:layout="@layout/fragment_add_and_edit_profil_User" >
+        tools:layout="@layout/fragment_add_and_edit_user_profile" >
         <action
-            android:id="@+id/action_addAndEditProfileUserFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_addAndEditProfileUserFragment_to_startListFragment2"
+            app:destination="@id/startListFragment2" />
     </fragment>
 </navigation>
