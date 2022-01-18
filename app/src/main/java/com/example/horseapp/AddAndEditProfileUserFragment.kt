@@ -16,6 +16,7 @@ import com.example.horseapp.databinding.FragmentAddAndEditUserProfileBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import java.util.zip.Inflater
 
@@ -78,20 +79,28 @@ class AddAndEditProfileUserFragment : Fragment() {
 
     }
 
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
-            R.id.sign_OUT_inPtofile_id ->{
-                signOut()
+        when(item.itemId) {
+            R.id.sign_OUT_inPtofile_id -> {
+                showConfirmationDialog()
                 findNavController().navigate(R.id.startListFragment2)
             }
 
-            R.id.addPromotion_in_profile_id ->{
+            R.id.addPromotion_in_profile_id -> {
                 findNavController().navigate(R.id.addPromotionFragment)
 
             }
+            R.id.move_fragment_menu_list_ID -> {
+                findNavController().navigate(R.id.myListFragmentUser)
+            }
+
+
+            R.id.setting_inPtofile_ID -> {
+                findNavController().navigate(R.id.userPrefrenceFragment)
+            }
+
+            // R.
         }
         return super.onOptionsItemSelected(item)
 
@@ -136,15 +145,15 @@ class AddAndEditProfileUserFragment : Fragment() {
 
         UserProfileViewModel.getUserscreateFunToCollSuspendFunction()
 //
-//        UserProfileViewModel._userInformation.observe(viewLifecycleOwner, {
-//            binding?.editTextUserNameAddEditUserProfileIDText?.setText(it.data_User_Name)
-//            binding?.editTextContentAddEdittUserProfileIDText?.setText(it.data_User_content)
-//            binding?.editTextCityAddEdittUserProfileIDText?.setText(it.data_city_user)
-//            binding?.editTextContactAddEdittUserProfileIDText?.setText(it.data_User_contact)
-//
-//            Glide.with(this.requireContext()).load(it.data_User_image).circleCrop().into(binding?.imageViewUsirProfileInAddEditID!!)
-//
-//        })
+        UserProfileViewModel._userInformation.observe(viewLifecycleOwner, {
+            binding?.editTextUserNameAddEditUserProfileIDText?.setText(it.data_User_Name)
+            binding?.editTextContentAddEdittUserProfileIDText?.setText(it.data_User_content)
+            binding?.editTextCityAddEdittUserProfileIDText?.setText(it.data_city_user)
+            binding?.editTextContactAddEdittUserProfileIDText?.setText(it.data_User_contact)
+
+            Glide.with(this.requireContext()).load(it.data_User_image).circleCrop().into(binding?.imageViewUsirProfileInAddEditID!!)
+
+        })
 
 //        binding?.BUTTONADDUserProfileAddEdit?.setOnClickListener {
 //
@@ -173,6 +182,21 @@ class AddAndEditProfileUserFragment : Fragment() {
     private fun signOut() {
         AuthUI.getInstance()
             .signOut(this.requireContext())
+    }
+
+
+    private fun showConfirmationDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(android.R.string.dialog_alert_title))
+            .setMessage(getString(R.string.delete_question))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.no)) { _, _ -> }
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                signOut()
+                // delete
+
+            }
+            .show()
     }
 
 

@@ -26,7 +26,6 @@ class FavoriteFragment : Fragment() {
 //**
         // Inflate the layout for this fragment:
         //**
-
         binding= FragmentFavoriteBinding.inflate(inflater,container,false)
         return binding?.root
 

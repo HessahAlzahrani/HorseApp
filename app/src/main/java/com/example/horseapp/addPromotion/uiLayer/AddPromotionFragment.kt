@@ -145,7 +145,7 @@ class AddPromotionFragment : Fragment() {
                 HorsesDataModel(
                     Data_horse_Name = name,
                     data_horse_Content = contact,
-                    Data_horse_image = imageList
+                    Data_horse_image = imageList,
                 )
             )
             findNavController().navigate(R.id.action_addPromotionFragment_to_startListFragment2)

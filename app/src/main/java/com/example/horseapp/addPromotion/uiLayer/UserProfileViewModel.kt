@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.horseapp.dataLayer.UserDataModel
+import com.example.horseapp.utilits.getUserId
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -13,13 +14,14 @@ import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.*
 
 class UserProfileViewModel : ViewModel() {
 
+
+    val db = Firebase.firestore
 
     val _Userlivedata = MutableLiveData<List<UserDataModel>>()
 
@@ -33,9 +35,9 @@ class UserProfileViewModel : ViewModel() {
     fun addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(userDataModel: UserDataModel) {
         viewModelScope.launch {
             add_DB_USERfromFirebase(userDataModel)
-}
+        }
 
-}
+    }
 
     suspend fun add_DB_USERfromFirebase(userDataModel: UserDataModel) {
 
@@ -51,7 +53,8 @@ class UserProfileViewModel : ViewModel() {
                 "data_city_user" to userDataModel.data_city_user,
                 "data_User_contact" to userDataModel.data_User_contact
             )
-            db_name_datasoursInFirebase.collection("UserProfile").document(Firebase.auth.currentUser?.uid!!)
+            db_name_datasoursInFirebase.collection("UserProfile")
+                .document(Firebase.auth.currentUser?.uid!!)
                 .set(User)
                 .addOnSuccessListener { documentReference ->
                     Log.d("TAG", "DocumentSnapshot written with ID: ${documentReference}")
@@ -81,11 +84,10 @@ class UserProfileViewModel : ViewModel() {
         }
 
 
-
     //create fun to coll suspend function
-    fun getUserscreateFunToCollSuspendFunction(){
+    fun getUserscreateFunToCollSuspendFunction() {
         viewModelScope.launch {
-            getUsersFromFirebaseForShow().collect{
+            getUsersFromFirebaseForShowByID().collect {
                 _userInformation.value = it
 
             }
@@ -93,7 +95,7 @@ class UserProfileViewModel : ViewModel() {
 
     }
 
-     suspend fun getUsersFromFirebaseForShow(): Flow<UserDataModel> = callbackFlow {
+    suspend fun getUsersFromFirebaseForShowByID(): Flow<UserDataModel> = callbackFlow {
         try {
             val db = Firebase.firestore
             db.collection("UserProfile").document(Firebase.auth.currentUser?.uid!!)
@@ -103,7 +105,7 @@ class UserProfileViewModel : ViewModel() {
                     }
 
                     val user = snapshot?.toObject(UserDataModel::class.java)
-                  //  Log.e("TAG", "getUsersFromFirebaseForShow: asdfg ${user}" )
+                    //  Log.e("TAG", "getUsersFromFirebaseForShow: asdfg ${user}" )
                     trySend(user!!)
                 }
 
@@ -118,4 +120,16 @@ class UserProfileViewModel : ViewModel() {
         }
     }
 
+        // function for delete user Account
+    fun deletUserAccountFromFirebase() {
+        db.collection("UserProfile").document(getUserId()) //coll function user ID()
+            .delete()
+            .addOnSuccessListener {
+                Log.d("TAG", "DocumentSnapshot successfully deleted!")
+            }
+            .addOnFailureListener { e ->
+                Log.w("TAG", "Error deleting document", e)
+            }
+    }
 }
+

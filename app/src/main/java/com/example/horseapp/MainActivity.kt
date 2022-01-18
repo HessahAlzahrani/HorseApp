@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.horseapp.databinding.ActivityMainBinding
+import com.example.horseapp.prefrence.ThemeApplication
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        ThemeApplication()
         super.onCreate(savedInstanceState)
          binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
