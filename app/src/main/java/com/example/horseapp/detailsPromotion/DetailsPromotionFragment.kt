@@ -37,18 +37,24 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var index: Int? = 0
 
+
         imageList = navigationArgs.imageUrlArgument.toList()
 
+        try {
+            Glide.with(this.requireContext()).load(imageList[0]).into(binding?.imageViewHorseDetailsFragmentId!!)
 
-        // Glide.with(this.requireContext()).load(imageList).into(binding?.imageViewHorseDetailsFragmentId)
+        }catch (e: Exception){
+
+        }
+
+        Log.e("TAG", "onViewCreatedqwertyuio00000000000000000: ${navigationArgs.itemContentArgument}", )
+
+
         binding?.apply {
             textViewDetailsNameHorsesId.text = navigationArgs.itemNameArgument
             textViewContentDetalsId.text = navigationArgs.itemContentArgument
 
 
-//            binding?.imageViewHorseDetailsFragmentId?.setImageURI(imageList!![position]?.toUri())
-
-            //  binding?.imageViewHorseDetailsFragmentId?.setFactory { ImageView(this@DetailsPromotionFragment.requireActivity()) }
             binding?.iconNXETId?.setOnClickListener {
                 Log.e("TAG", "onViewCreated:hhhh $imageList")
 
@@ -68,7 +74,6 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
                         position++
 
 
-//                    binding?.imageViewHorseDetailsFragmentId?.setImageURI(imageList!![position]?.toUri())
                     } else {
                         //No more images
                         Toast.makeText(
@@ -99,30 +104,12 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
                     }
                 }
 
-
-//           binding!!.imageViewHorseDetailsFragmentId.setImageURI(navigationArgs.imageArgument.toUri())
-
-
-                // thes for view image in fragment from dataSuors
-                //   context?.let { Glide.with(it).load(navigationArgs.imageUrlArgument).into(binding?.imageViewHorseDetailsFragmentId!!) }
-
-
             }
-//
-//        arguments.let {
-//            binding?.apply {
-//
-//
-//                // for make index .. index = it?.getInt("position")
-//                textViewContentDetalsId.text = it?.getString("itemNameArgument")
-//                textViewContentDetalsId.text = it?.getString("sorteArguments")
-//            }
-//
-//        }
+
             /***
              *  make photo button action for profile Show
              *  */
-            binding?.imageProfileInDetailsId?.setOnClickListener {
+            binding?.imageViewHorseDetailsFragmentId?.setOnClickListener {
                 val action =
                     DetailsPromotionFragmentDirections.actionDetailsPromotionFragmentToShowProfileFragment()
                 findNavController().navigate(action)

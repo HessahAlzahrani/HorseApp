@@ -23,7 +23,6 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
         fun bind(views: HorsesDataModel) {
             binding.itemNameId.text = views.Data_horse_Name
 
-
         }
 
     }

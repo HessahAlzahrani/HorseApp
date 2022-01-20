@@ -92,7 +92,6 @@ class UserProfileViewModel : ViewModel() {
 
             }
         }
-
     }
 
     suspend fun getUsersFromFirebaseForShowByID(): Flow<UserDataModel> = callbackFlow {
@@ -104,9 +103,14 @@ class UserProfileViewModel : ViewModel() {
                         return@addSnapshotListener
                     }
 
-                    val user = snapshot?.toObject(UserDataModel::class.java)
-                    //  Log.e("TAG", "getUsersFromFirebaseForShow: asdfg ${user}" )
-                    trySend(user!!)
+                    try {
+                        val user = snapshot?.toObject(UserDataModel::class.java)
+                        //  Log.e("TAG", "getUsersFromFirebaseForShow: asdfg ${user}" )
+                        trySend(user!!)
+                    }catch (e: Exception){
+
+                    }
+
                 }
 
 
@@ -131,5 +135,8 @@ class UserProfileViewModel : ViewModel() {
                 Log.w("TAG", "Error deleting document", e)
             }
     }
+
+
+
 }
 

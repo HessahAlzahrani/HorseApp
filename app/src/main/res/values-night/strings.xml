@@ -2,4 +2,5 @@
 <resources>
     <string name="sign_out">sign out</string>
     <string name="default_notification_channel_id">notification</string>
+    <string name="add_promotion">Add Promotion</string>
 </resources>

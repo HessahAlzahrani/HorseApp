@@ -82,7 +82,11 @@
         android:id="@+id/myListFragmentUser"
         android:name="com.example.horseapp.MyListFragmentUser"
         android:label="fragment_my_list_user"
-        tools:layout="@layout/fragment_my_list_user" />
+        tools:layout="@layout/fragment_my_list_user" >
+        <action
+            android:id="@+id/action_myListFragmentUser_to_detailsPromotionFragment"
+            app:destination="@id/detailsPromotionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userPrefrenceFragment"
         android:name="com.example.horseapp.prefrence.UserPrefrenceFragment"

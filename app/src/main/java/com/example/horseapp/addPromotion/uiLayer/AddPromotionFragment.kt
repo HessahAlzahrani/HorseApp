@@ -65,14 +65,15 @@ class AddPromotionFragment : Fragment() {
     // fun for intent in code ( : result  )
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.e("TAG", "onActivityResult: in", )
+        Log.e("hassah", "onActivityResult: in", )
         if (requestCode == PICK_IMAGES_CODE) {
-            Log.e("TAG", "sizeCountbb:", )
+            Log.e("hassah", "sizeCountbb:", )
 
-            if (data!!.clipData != null) {
+            if (data!!.clipData != null) { // 8888888888888888888888888888888888888888888888
+                Log.e("hassah", "clipData :", )
 
                 /** picked multiple images
-                 * get number of picked images*/
+                 * get number of picked images */
 
                 val count = data.clipData!!.itemCount
 
@@ -137,11 +138,11 @@ class AddPromotionFragment : Fragment() {
          * */
         binding?.addButtonAddFragmentId?.setOnClickListener {
 
-            val name = binding?.editTextHorsesNameID?.text.toString()
-            val contact = binding?.editTextContactID?.text.toString()
+            val name = binding?.editTextContentAddEdittUserProfileIDText?.text.toString()
+            val contact = binding?.editTextContactIDText?.text.toString()
 
                 // sand info from data for details
-            horsesViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(
+            horsesViewModel.addFunToCallCoroutineFunAddHorseFun_FORUSINGINIT(
                 HorsesDataModel(
                     Data_horse_Name = name,
                     data_horse_Content = contact,
@@ -154,6 +155,7 @@ class AddPromotionFragment : Fragment() {
         binding?.ImageSwitcherInAddFragmentId?.setFactory {
             ImageView(this.requireActivity())
         }
+
         binding?.iconNXETId?.setOnClickListener {
             if (position < imageList!!.size - 1) { position++
                 binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
@@ -190,9 +192,13 @@ class AddPromotionFragment : Fragment() {
         binding?.iconOpenCameraId?.setOnClickListener {
            // val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
            // startActivityForResult(camera_intent, pic_id)
+            Log.e("hassah", "onViewCreated: in on click", )
                 val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 if (takePictureIntent.resolveActivity(this.requireContext().packageManager) != null) {
-                    startActivityForResult(takePictureIntent, Request_code)
+                    Log.e("hassah", "onViewCreated: in if", )
+                    startActivityForResult(takePictureIntent, PICK_IMAGES_CODE)
+
+
                 } else {
                     //No more images
                     Toast.makeText(
@@ -204,6 +210,19 @@ class AddPromotionFragment : Fragment() {
         }
     }
 
+//    private fun formValidationCheck(): Boolean {
+//
+//        var isValid = true
+//
+//        if (binding?.name!!.isValid(binding!!.productTitleEditText, InputTypes.NAME))
+//            isValid = false
+//
+//        if (binding?.productDetailsTextField!!.isValid(binding!!.productDetailsEditText, InputTypes.CITY))
+//            isValid = false
+//
+//
+//        return isValid
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

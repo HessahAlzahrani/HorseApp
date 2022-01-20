@@ -83,7 +83,7 @@ class AddAndEditProfileUserFragment : Fragment() {
 
         when(item.itemId) {
             R.id.sign_OUT_inPtofile_id -> {
-                showConfirmationDialog()
+                showDialogForSignOUT()
                 findNavController().navigate(R.id.startListFragment2)
             }
 
@@ -100,7 +100,12 @@ class AddAndEditProfileUserFragment : Fragment() {
                 findNavController().navigate(R.id.userPrefrenceFragment)
             }
 
-            // R.
+
+            R.id.delete_inPtofile_ID -> {  //coll function for using
+                showDialogForDeletUSerAccount()
+                findNavController().navigate(R.id.startListFragment2)
+            }
+
         }
         return super.onOptionsItemSelected(item)
 
@@ -144,7 +149,7 @@ class AddAndEditProfileUserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         UserProfileViewModel.getUserscreateFunToCollSuspendFunction()
-//
+
         UserProfileViewModel._userInformation.observe(viewLifecycleOwner, {
             binding?.editTextUserNameAddEditUserProfileIDText?.setText(it.data_User_Name)
             binding?.editTextContentAddEdittUserProfileIDText?.setText(it.data_User_content)
@@ -155,28 +160,28 @@ class AddAndEditProfileUserFragment : Fragment() {
 
         })
 
-//        binding?.BUTTONADDUserProfileAddEdit?.setOnClickListener {
-//
-//            val nameUser = binding?.editTextUserNameAddEditUserProfileIDText?.text.toString()
-//            val contentUser = binding?.editTextContentAddEdittUserProfileIDText?.text.toString()
-//            val cityUser = binding?.editTextCityAddEdittUserProfileIDText?.text.toString()
-//            val contactUser = binding?.editTextContactAddEdittUserProfileID?.text.toString()
-//
-////            fileImageFromGAILY = fileImageFromGAILY
-//
-//            UserProfileViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(UserDataModel(
-//               data_User_image = fileImageFromGAILY.toString(),
-//                data_User_Name = nameUser,
-//                data_User_content = contentUser,
-//                data_city_user = cityUser,
-//                data_User_contact = contactUser,
-//            ))
-//        }
-//        binding?.imageViewUsirProfileInAddEditID?.setOnLongClickListener{
-//            Log.e("TAG", "onViewCreatedvbb: ", )
-//            intentPickImagesFromGaily()
-//            true
-//        }
+        binding?.BUTTONADDUserProfileAddEdit?.setOnClickListener {
+
+            val nameUser = binding?.editTextUserNameAddEditUserProfileIDText?.text.toString()
+            val contentUser = binding?.editTextContentAddEdittUserProfileIDText?.text.toString()
+            val cityUser = binding?.editTextCityAddEdittUserProfileIDText?.text.toString()
+            val contactUser = binding?.editTextContactAddEdittUserProfileIDText?.text.toString()
+
+//            fileImageFromGAILY = fileImageFromGAILY
+
+            UserProfileViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(UserDataModel(
+               data_User_image = fileImageFromGAILY.toString(),
+                data_User_Name = nameUser,
+                data_User_content = contentUser,
+                data_city_user = cityUser,
+                data_User_contact = contactUser,
+            ))
+        }
+        binding?.imageViewUsirProfileInAddEditID?.setOnLongClickListener{
+            Log.e("TAG", "onViewCreatedvbb: ", )
+            intentPickImagesFromGaily()
+            true
+        }
     }
 
     private fun signOut() {
@@ -185,7 +190,7 @@ class AddAndEditProfileUserFragment : Fragment() {
     }
 
 
-    private fun showConfirmationDialog() {
+    private fun showDialogForSignOUT() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(android.R.string.dialog_alert_title))
             .setMessage(getString(R.string.delete_question))
@@ -199,6 +204,20 @@ class AddAndEditProfileUserFragment : Fragment() {
             .show()
     }
 
+
+    private fun showDialogForDeletUSerAccount() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(android.R.string.dialog_alert_title))
+            .setMessage(getString(R.string.delete_question_account))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.no)) { _, _ -> }
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                UserProfileViewModel.deletUserAccountFromFirebase()
+
+
+            }
+            .show()
+    }
 
 }
 

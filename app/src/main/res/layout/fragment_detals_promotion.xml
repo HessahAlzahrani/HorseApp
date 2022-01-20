@@ -1,93 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/detals_fragment_id"
+    android:id="@+id/horses_item_card"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".detailsPromotion.DetailsPromotionFragment">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="30dp"
+    app:cardBackgroundColor="@color/gray"
+    app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/textView_content_detals_id"
-        android:layout_width="341dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="48dp"
-        android:text="detals horses and description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView_horse_details_fragment_id"
-        app:layout_constraintHorizontal_bias="0.797"
-        app:layout_constraintStart_toStartOf="@+id/imageView_horse_details_fragment_id"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id"
-        app:layout_constraintVertical_bias="0.744" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="374dp"
+        android:layout_height="696dp"
+        android:layout_margin="10dp">
 
-    <ImageView
-        android:id="@+id/image_profile_in_details_id"
-        android:layout_width="114dp"
-        android:layout_height="101dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="44dp"
-        android:visibility="gone"
-        android:src="@drawable/img_20220104_215544"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/name_profile_in_details_id"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/name_profile_in_details_id"
-        android:layout_width="157dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="64dp"
-        android:text="name user"
-        android:visibility="gone"
+        <!-- ###################################################### -->
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!-- ################################### -->
 
-    <ImageView
-        android:id="@+id/imageView_horse_details_fragment_id"
-        android:layout_width="305dp"
-        android:layout_height="192dp"
-        android:layout_marginBottom="268dp"
-        android:src="@drawable/horse_herd_fog_nature_52500"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView_details_name_horses_id"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="@+id/textView_details_name_horses_id" />
 
-    <TextView
-        android:id="@+id/textView_details_name_horses_id"
-        android:layout_width="182dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="112dp"
-        android:text="nameHorses"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView_horse_details_fragment_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_profile_in_details_id"
-        app:layout_constraintVertical_bias="0.0" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView10"
+            android:layout_width="133dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/gray"
+            app:cardCornerRadius="30dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id">
 
-    <ImageView
-        android:id="@+id/icon_Previous_Id"
-        android:layout_width="59dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_baseline_navigate_before_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
-    <ImageView
-        android:id="@+id/icon_NXET_Id"
-        android:layout_width="59dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="112dp"
-        android:src="@drawable/ic_baseline_navigate_next_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/icon_Previous_Id"
+                    android:layout_width="35dp"
+                    android:layout_height="33dp"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/ic_baseline_navigate_before_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/icon_NXET_Id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/icon_NXET_Id"
+                    android:layout_width="33dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="1dp"
+                    android:src="@drawable/ic_baseline_navigate_next_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_Previous_Id"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/textView_details_name_horses_id"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="96dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView_horse_details_fragment_id"
+            android:layout_width="318dp"
+            android:layout_height="241dp"
+            android:layout_marginTop="28dp"
+            android:contentDescription="TODO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_content_detals_id" />
+
+        <TextView
+            android:id="@+id/textView_content_detals_id"
+            android:layout_width="362dp"
+            android:layout_height="147dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="84dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_details_name_horses_id" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
+
+
 

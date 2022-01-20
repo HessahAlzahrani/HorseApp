@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.horseapp.addPromotion.uiLayer.HorsesViewModel
-import com.example.horseapp.dataLayer.HorsesDataModel
 import com.example.horseapp.databinding.FragmentMyListUserBinding
 
 class MyListFragmentUser : Fragment() {
 
-    private var binding : FragmentMyListUserBinding? =null
+    private var binding: FragmentMyListUserBinding? = null
 
     private val horsesViewModel: HorsesViewModel by activityViewModels()
 
@@ -23,15 +22,34 @@ class MyListFragmentUser : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-    binding = FragmentMyListUserBinding.inflate(inflater,container,false)
+        binding = FragmentMyListUserBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         horsesViewModel._userPromotion.observe(viewLifecycleOwner, {
-            Log.e("TAG", "onViewCreated: users $it")
+        } )
+        val adapter = ListUserAdapter(requireContext())
+        binding?.listUserIDRecyclerView?.adapter = adapter
+
+        //use all item in viewmodel
+        horsesViewModel._horsesUsserlivedata.observe(viewLifecycleOwner, {
+            adapter.submitList(it)
         })
+
+
+
+
+//        horsesViewModel.deletPromotionHorsesFromListUser()
+
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // garbage collector
+        binding = null
+    }
 }

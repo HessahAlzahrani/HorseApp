@@ -13,10 +13,10 @@
         android:icon="@drawable/ic_baseline_account_box_24"
         android:title="@string/profile"/>
 
-    <item
-        android:id="@+id/favoriteFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="@string/favorite" />
+<!--    <item-->
+<!--        android:id="@+id/favoriteFragment"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_baseline_favorite_24"-->
+<!--        android:title="@string/favorite" />-->
 
 </menu>

@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.horseapp.dataLayer.HorsesDataModel
 import com.example.horseapp.utilits.getUserId
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -27,6 +29,7 @@ class HorsesViewModel : ViewModel() {
     var allItemfromdatasuorse = MutableLiveData<List<HorsesDataModel>>(listOf())
 
     var _horseslivedata = MutableLiveData<List<HorsesDataModel>>()
+    var _horsesUsserlivedata = MutableLiveData<List<HorsesDataModel>>()
     var _userPromotion = MutableLiveData<List<HorsesDataModel>>()
 
 
@@ -35,6 +38,7 @@ class HorsesViewModel : ViewModel() {
      *  */
     init {
         getAllPromotionFromFirebaseForShow()
+        getAllPromotionFromFirebaseForShowUser()
         // getUserpromotionbyuserID()
 //        getAllPromotionFromFirebaseForShow_FORUSINGINIT()
     }
@@ -123,7 +127,7 @@ class HorsesViewModel : ViewModel() {
     // 1- create function
 
     fun getAllPromotionFromFirebaseForShow() {
-
+        Log.e("hassah", "getAllPromotionFromFirebaseForShow: stasrt", )
         try {
             val db = Firebase.firestore
             /*** //name collection in fireStore **/
@@ -133,9 +137,11 @@ class HorsesViewModel : ViewModel() {
                     if (exception != null) {
                         return@addSnapshotListener
                     }
+
                     /*** //variable holder listDataModel in viewModel*  */
                     var horsesListholddataromfirbaseASDATAMODEL = mutableListOf(HorsesDataModel())
                     snapshot?.documents?.forEach {
+                    Log.e("hassah", "getAllPromotionFromFirebaseForShow: ${it.data}", )
                         if (it.exists()) {
                             val promotionListGetValueFromFirebaseAsDataModel =
                                 it.toObject(HorsesDataModel::class.java)
@@ -153,44 +159,53 @@ class HorsesViewModel : ViewModel() {
     }
 
 
+    fun getAllPromotionFromFirebaseForShowUser() {
 
-
-
-
-    fun getUserpromotionbyuserID(): Flow<List<HorsesDataModel>> = callbackFlow {
         try {
-            Log.e("TAG", "onViewCreated: users")
-
             val db = Firebase.firestore
-            db.collection("Horses").whereEqualTo("data_horse_seller", getUserId())
+            /*** //name collection in fireStore **/
+            db.collection("Horses").whereEqualTo("data_horse_seller", getUserId())//link horses by id user
+                /*** // .addSnapshotListener() like liveData tListener for iny cheng *  */
                 .addSnapshotListener { snapshot, exception ->
                     if (exception != null) {
                         return@addSnapshotListener
                     }
-
-                    val list = mutableListOf<HorsesDataModel>()
+                    /*** //variable holder listDataModel in viewModel*  */
+                    var horsesListholddataromfirbaseASDATAMODEL = mutableListOf(HorsesDataModel())
                     snapshot?.documents?.forEach {
                         if (it.exists()) {
-                            Log.e("TAG", "getUserPosts: ${it.data}")
-                            val productList = it.toObject(HorsesDataModel::class.java)
-                            list.add(productList!!)
+                            val promotionListGetValueFromFirebaseAsDataModel =
+                                it.toObject(HorsesDataModel::class.java)
+
+                            horsesListholddataromfirbaseASDATAMODEL.add(
+                                promotionListGetValueFromFirebaseAsDataModel!!
+                            )
                         }
-
                     }
-                    _userPromotion.value = list
-                    // trySend(list)
-
+                    _horsesUsserlivedata.value = horsesListholddataromfirbaseASDATAMODEL
                 }
-
-
         } catch (exception: Exception) {
-            Log.e("Exception", "getAllProducts: ${exception.message.toString()}")
 
         }
-
-        awaitClose { }
-
     }
+
+
+
+            // function delete horses
+//
+//        fun deletePromotionHorsesFromListUser (){
+//             val db = FirebaseFirestore.getInstance()
+//              db.collection("Horses").whereEqualTo("data_horse_seller" , getUserId())
+//         .delete()
+//         .addOnSuccessListener {
+//             Log.e("TAG","save:true")
+//         }
+//         .addOnFailureListener{e->
+//             Log.e("TAG","save:error $e")
+//         }
+//
+
+
 
 
 }// end.
