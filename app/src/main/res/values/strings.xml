@@ -26,9 +26,9 @@
     <string name="setting">setting</string>
     <string name="delete_account">DELETE Account</string>
     <string name="add_yor_promotion">add yor promotion</string>
-    <string name="not_empty_field">Complete information</string>
-    <string name="content">Content</string>
+    <string name="name">Name</string>
     <string name="add_promotion">Add Promotion</string>
-    <string name="my_list_promotion">My List Promotion</string>
+    <string name="content">Content</string>
+    <string name="my_list_promotion" translatable="false">My List Promotion</string>
     <string name="add">add</string>
 </resources>

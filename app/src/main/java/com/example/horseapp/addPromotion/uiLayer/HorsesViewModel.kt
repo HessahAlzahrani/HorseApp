@@ -125,7 +125,6 @@ class HorsesViewModel : ViewModel() {
         }
 
     // 1- create function
-
     fun getAllPromotionFromFirebaseForShow() {
         Log.e("hassah", "getAllPromotionFromFirebaseForShow: stasrt", )
         try {
@@ -138,8 +137,8 @@ class HorsesViewModel : ViewModel() {
                         return@addSnapshotListener
                     }
 
-                    /*** //variable holder listDataModel in viewModel*  */
-                    var horsesListholddataromfirbaseASDATAMODEL = mutableListOf(HorsesDataModel())
+                    /*** //variable holder listDataModel in viewModel as object  **/
+                    val horsesListholddataromfirbaseASDATAMODEL: MutableList<HorsesDataModel> = mutableListOf()
                     snapshot?.documents?.forEach {
                     Log.e("hassah", "getAllPromotionFromFirebaseForShow: ${it.data}", )
                         if (it.exists()) {
@@ -149,6 +148,7 @@ class HorsesViewModel : ViewModel() {
                             horsesListholddataromfirbaseASDATAMODEL.add(
                                 promotionListGetValueFromFirebaseAsDataModel!!
                             )
+
                         }
                     }
                     _horseslivedata.value = horsesListholddataromfirbaseASDATAMODEL
@@ -171,7 +171,7 @@ class HorsesViewModel : ViewModel() {
                         return@addSnapshotListener
                     }
                     /*** //variable holder listDataModel in viewModel*  */
-                    var horsesListholddataromfirbaseASDATAMODEL = mutableListOf(HorsesDataModel())
+                    var horsesListholddataromfirbaseASDATAMODEL: MutableList<HorsesDataModel> = mutableListOf()
                     snapshot?.documents?.forEach {
                         if (it.exists()) {
                             val promotionListGetValueFromFirebaseAsDataModel =

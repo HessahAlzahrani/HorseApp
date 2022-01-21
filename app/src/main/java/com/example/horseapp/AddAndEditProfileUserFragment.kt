@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -58,6 +59,45 @@ class AddAndEditProfileUserFragment : Fragment() {
             res -> this.onSignInResult(res)
     }
 
+
+
+    fun validationUI(name: String, content: String,Contact:String,City:String): Boolean {
+        var result = true
+        if (name.isEmpty()) {
+            binding?.editTextUserNameAddEditUserProfileID?.error = "Enter the name"
+            result = false
+        } else {
+            binding?.editTextUserNameAddEditUserProfileID?.error = null
+        }
+        if (content.isEmpty()) {
+            binding?.editTextContentAddEdittUserProfileID?.error = "Enter the content"
+            result = false
+        } else {
+            binding?.editTextContentAddEdittUserProfileID?.error = null
+        }
+
+        if (City.isEmpty()) {
+            binding?.editTextCityAddEdittUserProfileID?.error = "Enter the content"
+            result = false
+        } else {
+            binding?.editTextCityAddEdittUserProfileID?.error = null
+        }
+
+        if (Contact.isEmpty()) {
+            binding?.editTextContactAddEdittUserProfileID?.error = "Enter the content"
+            result = false
+        } else {
+            binding?.editTextContactAddEdittUserProfileID?.error = null
+        }
+        if (fileImageFromGAILY == null) {
+            Toast.makeText(this.requireContext(), "ADD IMAGE !!", Toast.LENGTH_SHORT).show()
+            result = false
+        }
+
+        return result
+    }
+
+
     /// function Result sign in
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
@@ -103,7 +143,6 @@ class AddAndEditProfileUserFragment : Fragment() {
 
             R.id.delete_inPtofile_ID -> {  //coll function for using
                 showDialogForDeletUSerAccount()
-                findNavController().navigate(R.id.startListFragment2)
             }
 
         }
@@ -124,10 +163,13 @@ class AddAndEditProfileUserFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        fileImageFromGAILY = data?.data!!
-      //  Glide.with(this.requireContext()).load(fileImageFromGAILY).circleCrop().into(binding?.imageViewUsirProfileInAddEditID!!)
-       // binding?.imageViewUsirProfileInAddEditID?.setImageURI(fileImageFromGAILY)
-        fileImageFromGAILY.toString()
+        try {
+            fileImageFromGAILY = data?.data!!
+            fileImageFromGAILY.toString()
+        }catch (e: Exception){
+
+        }
+
 
 
     }
@@ -148,17 +190,21 @@ class AddAndEditProfileUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        UserProfileViewModel.getUserscreateFunToCollSuspendFunction()
+        try {
+            UserProfileViewModel.getUserscreateFunToCollSuspendFunction()
+            UserProfileViewModel._userInformation.observe(viewLifecycleOwner, {
+                binding?.editTextUserNameAddEditUserProfileIDText?.setText(it.data_User_Name)
+                binding?.editTextContentAddEdittUserProfileIDText?.setText(it.data_User_content)
+                binding?.editTextCityAddEdittUserProfileIDText?.setText(it.data_city_user)
+                binding?.editTextContactAddEdittUserProfileIDText?.setText(it.data_User_contact)
 
-        UserProfileViewModel._userInformation.observe(viewLifecycleOwner, {
-            binding?.editTextUserNameAddEditUserProfileIDText?.setText(it.data_User_Name)
-            binding?.editTextContentAddEdittUserProfileIDText?.setText(it.data_User_content)
-            binding?.editTextCityAddEdittUserProfileIDText?.setText(it.data_city_user)
-            binding?.editTextContactAddEdittUserProfileIDText?.setText(it.data_User_contact)
+                Glide.with(this.requireContext()).load(it.data_User_image).circleCrop().into(binding?.imageViewUsirProfileInAddEditID!!)
 
-            Glide.with(this.requireContext()).load(it.data_User_image).circleCrop().into(binding?.imageViewUsirProfileInAddEditID!!)
+            })
 
-        })
+        }catch (e: Exception){
+
+        }
 
         binding?.BUTTONADDUserProfileAddEdit?.setOnClickListener {
 
@@ -167,16 +213,20 @@ class AddAndEditProfileUserFragment : Fragment() {
             val cityUser = binding?.editTextCityAddEdittUserProfileIDText?.text.toString()
             val contactUser = binding?.editTextContactAddEdittUserProfileIDText?.text.toString()
 
-//            fileImageFromGAILY = fileImageFromGAILY
-
-            UserProfileViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(UserDataModel(
-               data_User_image = fileImageFromGAILY.toString(),
-                data_User_Name = nameUser,
-                data_User_content = contentUser,
-                data_city_user = cityUser,
-                data_User_contact = contactUser,
-            ))
+            if (validationUI(nameUser,contentUser,contactUser,cityUser)) {
+                Log.e("TAG", "onViewCreated: Enter")
+                UserProfileViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(
+                    UserDataModel(
+                        data_User_image = fileImageFromGAILY.toString(),//fileImageFromGAILY = fileImageFromGAILY
+                        data_User_Name = nameUser,
+                        data_User_content = contentUser,
+                        data_city_user = cityUser,
+                        data_User_contact = contactUser,
+                    )
+                )
+            }
         }
+
         binding?.imageViewUsirProfileInAddEditID?.setOnLongClickListener{
             Log.e("TAG", "onViewCreatedvbb: ", )
             intentPickImagesFromGaily()
@@ -213,6 +263,9 @@ class AddAndEditProfileUserFragment : Fragment() {
             .setNegativeButton(getString(R.string.no)) { _, _ -> }
             .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 UserProfileViewModel.deletUserAccountFromFirebase()
+                signOut()
+                findNavController().navigate(R.id.startListFragment2)
+
 
 
             }
@@ -221,53 +274,3 @@ class AddAndEditProfileUserFragment : Fragment() {
 
 }
 
-
-
-//    //1 // craete db in fierbase
-//     private val databaseUserinfirebase =Firebase.firestore.collection(
-//         " UserDataModel"
-//     )
-//
-//
-//    //2/// return collection above val 1
-//   private fun holdInfoFromXml () : UserDataModel {
-//        var userIDD = Firebase.auth.currentUser!!.uid
-//        var imageUserinADDprofile = binding?.imageViewUsirProfileInAddEditID.toString()
-//        var UserNameInProfileADD = binding?.editTextUserNameAddEditUserProfileID?.text.toString()
-//        val UserContentInProfileADD = binding?.editTextContentAddEdittUserProfileID?.text.toString()
-//        val UserCityInProfileADD = binding?.editTextCityAddEdittUserProfileID?.text.toString()
-//        val UserContactInProfileADD =binding?.editTextContactAddEdittUserProfileID?.text.toString()
-//
-//        return UserDataModel(
-//            userId = userIDD,
-//            data_User_image = imageUserinADDprofile,
-//            data_User_Name = UserNameInProfileADD,
-//            data_User_content = UserContentInProfileADD,
-//            data_city_user = UserCityInProfileADD,
-//            data_User_contact = UserContactInProfileADD
-//        )
-//        // UserDataModel ("djvkf.jpg","Jana")
-//   }
-//
-//        //3 //
-//    private fun savaDataInFierStorfromUser (user : UserDataModel){
-//        databaseUserinfirebase.add(user)
-//            .addOnCompleteListener {task ->
-//                if (task.isSuccessful)
-//                    Toast.makeText(this.requireContext(), "Save", Toast.LENGTH_SHORT).show()
-//            }
-//
-//    }
-
-
-//
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//
-//        //4//
-//        binding?.BUTTONADDUserProfileAddEdit?.setOnClickListener {
-//            val user = holdInfoFromXml ()
-//            savaDataInFierStorfromUser(user)
-//
-//        }
-//    }

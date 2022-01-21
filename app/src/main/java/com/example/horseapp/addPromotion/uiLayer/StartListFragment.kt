@@ -40,7 +40,6 @@ class StartListFragment : Fragment() {
 
         //use all item in viewmodel
         horsesViewModel._horseslivedata.observe(viewLifecycleOwner, {
-            Log.e("TAG", "onViewCreated1111111111111111: $it", )
             adapter.submitList(it)
         })
 

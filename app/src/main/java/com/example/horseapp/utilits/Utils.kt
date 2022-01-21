@@ -15,29 +15,3 @@ fun getUserId(): String {
     return Firebase.auth.currentUser?.uid.toString()
 }
 
-
-enum class InputTypes { NAME, CITY }
-
-
-fun TextInputLayout.isValid(textInput: TextInputEditText, validationTypes: InputTypes): Boolean {
-    val text = textInput.text.toString()
-    when (validationTypes) {
-        InputTypes.NAME -> {
-            if (TextUtils.isEmpty(text)) {
-                this.error = this.context.getString(R.string.not_empty_field)
-                return false
-            }
-        }
-        InputTypes.CITY -> {
-            if (TextUtils.isEmpty(text)) {
-                this.error = this.context.getString(R.string.not_empty_field)
-                return false
-            }
-
-        }
-    }
-
-    this.error = null
-    return true
-
-}
