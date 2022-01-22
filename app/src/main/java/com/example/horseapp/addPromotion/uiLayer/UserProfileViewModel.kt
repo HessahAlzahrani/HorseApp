@@ -6,10 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.horseapp.dataLayer.UserDataModel
+import com.example.horseapp.utilits.getUserId
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -19,18 +20,17 @@ import java.util.*
 
 class UserProfileViewModel : ViewModel() {
 
-    var allItemfromdatasuorse = MutableLiveData<List<UserDataModel>>(listOf())
+
+    val db = Firebase.firestore
 
     val _Userlivedata = MutableLiveData<List<UserDataModel>>()
 
+    val _userInformation = MutableLiveData<UserDataModel>()
     //1 // craete db in fierbase
-    private val databaseUserinfirebase = Firebase.firestore.collection(
-        " UserDataModel"
-    )
+//    private val databaseUserinfirebase = Firebase.firestore.collection(
+//        " UserDataModel"
+//    )
 
-    init {
-        getAllUsersFromFirebaseForShow()
-    }
 
     fun addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(userDataModel: UserDataModel) {
         viewModelScope.launch {
@@ -42,7 +42,6 @@ class UserProfileViewModel : ViewModel() {
     suspend fun add_DB_USERfromFirebase(userDataModel: UserDataModel) {
 
         uploadImage_TOFirebaseAND_return_LINK(userDataModel).collect {
-            Log.e("TAG", "hessah00000000000000000000000000000000000000000): $it")
 
             // like datasuors in firebase (name in firebase = name in modeldata)
             val db_name_datasoursInFirebase = Firebase.firestore
@@ -55,9 +54,10 @@ class UserProfileViewModel : ViewModel() {
                 "data_User_contact" to userDataModel.data_User_contact
             )
             db_name_datasoursInFirebase.collection("UserProfile")
-                .add(User)
+                .document(Firebase.auth.currentUser?.uid!!)
+                .set(User)
                 .addOnSuccessListener { documentReference ->
-                    Log.d("TAG", "DocumentSnapshot written with ID: ${documentReference.id}")
+                    Log.d("TAG", "DocumentSnapshot written with ID: ${documentReference}")
                 }
                 .addOnFailureListener { e ->
                     Log.w("TAG", "Error adding document", e)
@@ -69,56 +69,74 @@ class UserProfileViewModel : ViewModel() {
         callbackFlow {
             val storegeRifrensimages = Firebase.storage.reference
 
-                val reference =
-                    storegeRifrensimages.child("imageUser/${Calendar.getInstance().timeInMillis}")
+            val reference =
+                storegeRifrensimages.child("imageUser/${Calendar.getInstance().timeInMillis}")
 
-                Log.e(
-                    "TAG",
-                    "uploadImage_TOFirebaseAND_return_LINK: ${userDataModel.data_User_image}"
-                )
-                val imageUri = reference.putFile(userDataModel.data_User_image.toUri())
-                    .continueWithTask { task ->
-                        /// reference =====
-                        reference.downloadUrl
-                    }.await() // await
+            val imageUri = reference.putFile(userDataModel.data_User_image.toUri())
+                .continueWithTask { task ->
+                    /// reference =====
+                    reference.downloadUrl
+                }.await() // await
 
-                trySend(imageUri.toString())
+            trySend(imageUri.toString())
 
             awaitClose { }
         }
 
 
-    private fun getAllUsersFromFirebaseForShow() {
+    //create fun to coll suspend function
+    fun getUserscreateFunToCollSuspendFunction() {
+        viewModelScope.launch {
+            getUsersFromFirebaseForShowByID().collect {
+                _userInformation.value = it
 
+            }
+        }
+    }
+
+    suspend fun getUsersFromFirebaseForShowByID(): Flow<UserDataModel> = callbackFlow {
         try {
             val db = Firebase.firestore
-            db.collection(" UserProfile")
+            db.collection("UserProfile").document(Firebase.auth.currentUser?.uid!!)
                 .addSnapshotListener { snapshot, exception ->
                     if (exception != null) {
                         return@addSnapshotListener
                     }
-                    val UserDatafromFirebase = mutableListOf(UserDataModel())
-                    snapshot?.documents?.forEach() {
-                        if (it.exists()) {
-                            val UserProfilGetValueFromFirebaseAsDataModel =
-                                it.toObject(UserDataModel::class.java)
-                            Log.e("TAG", "getAllUsersFromFirebaseForShow: ${it}")
 
-                            UserDatafromFirebase.add(UserProfilGetValueFromFirebaseAsDataModel!!)
+                    try {
+                        val user = snapshot?.toObject(UserDataModel::class.java)
+                        //  Log.e("TAG", "getUsersFromFirebaseForShow: asdfg ${user}" )
+                        trySend(user!!)
+                    }catch (e: Exception){
 
-                        }
                     }
-                    Log.e(
-                        "TAG",
-                        "getAllPromotionFromFirebaseForShoiiiiiiiii: ${UserDatafromFirebase}"
-                    )
 
-
-                    _Userlivedata.value = UserDatafromFirebase
                 }
+
+
         } catch (exception: Exception) {
+            Log.e("Exception", "getAllProducts: ${exception.message.toString()}")
+
+        }
+
+        awaitClose {
 
         }
     }
 
+        // function for delete user Account
+    fun deletUserAccountFromFirebase() {
+        db.collection("UserProfile").document(getUserId()) //coll function user ID()
+            .delete()
+            .addOnSuccessListener {
+                Log.d("TAG", "DocumentSnapshot successfully deleted!")
+            }
+            .addOnFailureListener { e ->
+                Log.w("TAG", "Error deleting document", e)
+            }
+    }
+
+
+
 }
+

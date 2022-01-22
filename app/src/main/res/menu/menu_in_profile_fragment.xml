@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/addPromotion_in_profile_id"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_add_box_24"
+        android:title="@string/add_promtoin" />
+
+    <item
+        android:id="@+id/move_fragment_menu_list_ID"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_add_box_24"
+        android:title="@string/my_list" />
+
+    <item
+        android:id="@+id/sign_OUT_inPtofile_id"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_off_24"
+        android:title="@string/sign_out" />
+
+    <item
+        android:id="@+id/setting_inPtofile_ID"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_off_24"
+        android:title="@string/setting" />
+
+    <item
+        android:id="@+id/delete_inPtofile_ID"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_off_24"
+        android:title="@string/delete_account" />
+
+</menu>

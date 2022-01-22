@@ -20,6 +20,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.horseapp.R
 import com.example.horseapp.dataLayer.HorsesDataModel
 import com.example.horseapp.databinding.FragmentAddPromotionBinding
+import kotlinx.android.synthetic.main.fragment_add_and_edit_user_profile.*
+import kotlinx.android.synthetic.main.fragment_detals_promotion.*
 import java.io.File
 import java.util.ArrayList
 
@@ -65,41 +67,42 @@ class AddPromotionFragment : Fragment() {
     // fun for intent in code ( : result  )
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.e("TAG", "onActivityResult: in", )
+        Log.e("hassah", "onActivityResult: in", )
         if (requestCode == PICK_IMAGES_CODE) {
-            Log.e("TAG", "sizeCountbb:", )
+            Log.e("hassah", "sizeCountbb:", )
 
-            if (data!!.clipData != null) {
+            try {
+                if (data!!.clipData != null) {
+                    Log.e("hassah", "clipData :", )
 
-                /** picked multiple images
-                 * get number of picked images*/
+                    /** picked multiple images
+                     * get number of picked images */
 
-                val count = data.clipData!!.itemCount
+                    val count = data.clipData!!.itemCount
 
-                for (i in 0 until count) {
+                    for (i in 0 until count) {
 
-                    val imageUri = data.clipData!!.getItemAt(i).uri
-                    /**
-                     * add image to list
-                     **/
+                        val imageUri = data.clipData!!.getItemAt(i).uri
+                        /**
+                         * add image to list
+                         **/
+                        imageList.add(imageUri.toString())
+                    }
+                    /**set first image from list to image switcher*/
+                    binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList[0].toUri())
+                    position = 0
+                } else {
+                    /**pick single image*/
+                    val imageUri = data.data
+                    //set image to image switcher
+                    binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageUri)
                     imageList.add(imageUri.toString())
+                    position = 0
                 }
-                /**set first image from list to image switcher*/
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList[0].toUri())
-                position = 0
-            } else {
-
-                /**pick single image*/
-                val imageUri = data.data
-                //set image to image switcher
-                binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageUri)
-                imageList.add(imageUri.toString())
-                position = 0
-            }
-
-             if (requestCode == Activity.RESULT_OK) {
+            }catch (e: Exception){
 
             }
+
         }
         if (requestCode == Request_code ) {
             Log.e("TAG", "onActivityResult: in if Bitmap", )
@@ -120,6 +123,32 @@ class AddPromotionFragment : Fragment() {
         }
     }
 
+
+            // function for handle error masseg
+    fun validationUI(name: String, content: String): Boolean{
+        var result = true
+        if (name.isEmpty()){
+            binding?.editTextHorsesNameID?.error = "Enter the name"
+            result = false
+        }else{
+            binding?.editTextHorsesNameID?.error = null // the lyne for delete error
+        }
+        if (content.isEmpty()){
+            binding?.editTextContactID?.error = "Enter the content"
+            result = false
+        }else{
+            binding?.editTextContactID?.error = null
+
+        }
+        if (imageList.isEmpty()){
+            Toast.makeText(this.requireContext(), "ADD IMAGE !!", Toast.LENGTH_SHORT).show()
+            result = false
+        }
+
+
+        return result
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -137,23 +166,31 @@ class AddPromotionFragment : Fragment() {
          * */
         binding?.addButtonAddFragmentId?.setOnClickListener {
 
-            val name = binding?.editTextHorsesNameID?.text.toString()
-            val contact = binding?.editTextContactID?.text.toString()
+
+            val name = binding?.editTextContentAddEdittUserProfileIDText?.text.toString()
+            val contact = binding?.editTextContactIDText?.text.toString()
+
+            if (validationUI(name ,contact)) {
 
                 // sand info from data for details
-            horsesViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(
-                HorsesDataModel(
-                    Data_horse_Name = name,
-                    data_horse_Content = contact,
-                    Data_horse_image = imageList
+                horsesViewModel.addFunToCallCoroutineFunAddHorseFun_FORUSINGINIT(
+                    HorsesDataModel(
+                        Data_horse_Name = name,
+                        data_horse_Content = contact,
+                        Data_horse_image = imageList,
+                    )
                 )
-            )
-            findNavController().navigate(R.id.action_addPromotionFragment_to_startListFragment2)
+                findNavController().navigate(R.id.action_addPromotionFragment_to_startListFragment2)
+
+            }
         }
 
-        binding?.ImageSwitcherInAddFragmentId?.setFactory {
+
+           binding?.ImageSwitcherInAddFragmentId?.setFactory {
             ImageView(this.requireActivity())
         }
+
+
         binding?.iconNXETId?.setOnClickListener {
             if (position < imageList!!.size - 1) { position++
                 binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
@@ -183,26 +220,8 @@ class AddPromotionFragment : Fragment() {
         binding?.iconAddPhotoGId?.setOnClickListener {
             pickImagesIntint()
         }
-
-        /**
-         * code intent for opened camera
-         * */
-        binding?.iconOpenCameraId?.setOnClickListener {
-           // val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-           // startActivityForResult(camera_intent, pic_id)
-                val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                if (takePictureIntent.resolveActivity(this.requireContext().packageManager) != null) {
-                    startActivityForResult(takePictureIntent, Request_code)
-                } else {
-                    //No more images
-                    Toast.makeText(
-                        this.requireContext(),
-                        "unable to open camera ",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-        }
     }
+
 
 
     override fun onDestroy() {

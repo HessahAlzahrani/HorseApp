@@ -8,6 +8,7 @@ data class HorsesDataModel(
     val Data_horse_Name:String = "",
     val Data_horse_image: List<String> = listOf(""),
     val data_horse_Content:String = "",
+    val data_horse_seller: String = ""
 
     )//end dataClass HorsesDataModel
 

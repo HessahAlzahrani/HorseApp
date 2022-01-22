@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"الخيول "</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="favorite">المفضلة</string>
+    <string name="home">الرئيسية</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="add_promtoin">اضافة أعلان</string>
+    <string name="delete_question">هل تريد تسجيل الخروج ؟</string>
+    <string name="delete_question_account">هل تريد حذف الحساب ؟</string>
+    <string name="no">لا</string>
+    <string name="yes">"نعم "</string>
+    <string name="your_name">"الأسم "</string>
+    <string name="default_notification_channel_id">الإشعارات</string>
+    <string name="my_list">قائمتي</string>
+    <string name="dark_theme_preference_value">"الوضع اليلي "</string>
+    <string name="light_theme_preference_value">"الوضع النهاري "</string>
+    <string name="system_theme_preference_value">اعدادات</string>
+    <string name="setting" translatable="false">"الإعدادات "</string>
+    <string name="delete_account">"حذف الحساب "</string>
+    <string name="add_promotion">Add Promotion</string>
+    <string name="add_yor_promotion">أضف أ‘علان</string>
+    <string name="name">الاسم</string>
+    <string name="add">اضف</string>
+</resources>

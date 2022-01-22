@@ -30,7 +30,8 @@ class ShowProfileFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-    Log.e("TAG", "onViewCreated: ${userProfileViewModel._Userlivedata.value}", )
+    Log.e("TAG", "onViewCreated: ${userProfileViewModel._Userlivedata.value}")
+
 
   }
 }// end class

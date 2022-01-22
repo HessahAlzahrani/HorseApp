@@ -23,7 +23,6 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
         fun bind(views: HorsesDataModel) {
             binding.itemNameId.text = views.Data_horse_Name
 
-
         }
 
     }
@@ -31,7 +30,7 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ResultsItemViewHolder {
         return ResultsItemViewHolder(
-            ItemBinding.inflate(LayoutInflater.from(parent.context)))
+            ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ResultsItemViewHolder, position: Int) {
@@ -42,14 +41,16 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
         val listProject= getItem(position)
         holder.bind(listProject)
 
-        Log.e("TAG", "onBindViewHoldeffffffffffr: $listProject", )
-
         /**
         // library for tek photos from link and holder for xml
          */
-        Glide.with(context).load(listProject.Data_horse_image[0]).into(holder.binding.imageViewForShowinAdapterId)
-
-
+        if(listProject.Data_horse_image.size != 0) {
+            Glide.with(context).load(listProject.Data_horse_image[0])
+                .into(holder.binding.imageViewForShowinAdapterId)
+        }else{
+            Glide.with(context).load("https://firebasestorage.googleapis.com/v0/b/horse-app-4dfdc.appspot.com/o/images%2F1641669616481?alt=media&token=c259f9d1-d906-46f0-9ee2-ae14412ad568")
+                .into(holder.binding.imageViewForShowinAdapterId)
+        }
 
 //
 //        }
@@ -57,7 +58,7 @@ class ItemListAdapter(var context: Context) :ListAdapter<HorsesDataModel,ItemLis
         /**
          *  // make Item like button
          */
-        holder.binding.imageViewForShowinAdapterId.setOnClickListener{
+        holder.binding.horsesItemCard.setOnClickListener{
 
             val actionForNafigatArgument =
                 StartListFragmentDirections.actionStartListFragment2ToDetailsPromotionFragment(
