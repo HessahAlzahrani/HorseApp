@@ -47,17 +47,11 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
 
         }
 
-        Log.e("TAG", "onViewCreatedqwertyuio00000000000000000: ${navigationArgs.itemContentArgument}", )
-
-
         binding?.apply {
             textViewDetailsNameHorsesId.text = navigationArgs.itemNameArgument
             textViewContentDetalsId.text = navigationArgs.itemContentArgument
 
-
             binding?.iconNXETId?.setOnClickListener {
-                Log.e("TAG", "onViewCreated:hhhh $imageList")
-
 
                 if (position < imageList.size) {
                     Glide.with(this@DetailsPromotionFragment.requireContext())
@@ -106,14 +100,14 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
 
             }
 
-            /***
-             *  make photo button action for profile Show
-             *  */
-            binding?.imageViewHorseDetailsFragmentId?.setOnClickListener {
-                val action =
-                    DetailsPromotionFragmentDirections.actionDetailsPromotionFragmentToShowProfileFragment()
-                findNavController().navigate(action)
-            }
+//            /***
+//             *  make photo button action for profile Show
+//             *  */
+//            binding?.imageViewHorseDetailsFragmentId?.setOnClickListener {
+//                val action =
+//                    DetailsPromotionFragmentDirections.actionDetailsPromotionFragmentToShowProfileFragment()
+//                findNavController().navigate(action)
+//            }
         }
 
     }

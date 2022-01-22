@@ -72,7 +72,7 @@ class AddPromotionFragment : Fragment() {
             Log.e("hassah", "sizeCountbb:", )
 
             try {
-                if (data!!.clipData != null) { // 8888888888888888888888888888888888888888888888
+                if (data!!.clipData != null) {
                     Log.e("hassah", "clipData :", )
 
                     /** picked multiple images
@@ -124,14 +124,14 @@ class AddPromotionFragment : Fragment() {
     }
 
 
-
+            // function for handle error masseg
     fun validationUI(name: String, content: String): Boolean{
         var result = true
         if (name.isEmpty()){
             binding?.editTextHorsesNameID?.error = "Enter the name"
             result = false
         }else{
-            binding?.editTextHorsesNameID?.error = null
+            binding?.editTextHorsesNameID?.error = null // the lyne for delete error
         }
         if (content.isEmpty()){
             binding?.editTextContactID?.error = "Enter the content"
@@ -140,10 +140,11 @@ class AddPromotionFragment : Fragment() {
             binding?.editTextContactID?.error = null
 
         }
-
         if (imageList.isEmpty()){
             Toast.makeText(this.requireContext(), "ADD IMAGE !!", Toast.LENGTH_SHORT).show()
+            result = false
         }
+
 
         return result
     }
@@ -190,8 +191,6 @@ class AddPromotionFragment : Fragment() {
         }
 
 
-
-
         binding?.iconNXETId?.setOnClickListener {
             if (position < imageList!!.size - 1) { position++
                 binding?.ImageSwitcherInAddFragmentId?.setImageURI(imageList!![position]?.toUri())
@@ -220,29 +219,6 @@ class AddPromotionFragment : Fragment() {
          * */
         binding?.iconAddPhotoGId?.setOnClickListener {
             pickImagesIntint()
-        }
-
-        /**
-         * code intent for opened camera
-         * */
-        binding?.iconOpenCameraId?.setOnClickListener {
-           // val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-           // startActivityForResult(camera_intent, pic_id)
-            Log.e("hassah", "onViewCreated: in on click", )
-                val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                if (takePictureIntent.resolveActivity(this.requireContext().packageManager) != null) {
-                    Log.e("hassah", "onViewCreated: in if", )
-                    startActivityForResult(takePictureIntent, PICK_IMAGES_CODE)
-
-
-                } else {
-                    //No more images
-                    Toast.makeText(
-                        this.requireContext(),
-                        "unable to open camera ",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
         }
     }
 
