@@ -36,7 +36,6 @@ class AddPromotionFragment : Fragment() {
 
 
     /**   //add viewModel : */
-
     private val horsesViewModel: HorsesViewModel by activityViewModels()
 
     /**  store user picked images
@@ -105,7 +104,7 @@ class AddPromotionFragment : Fragment() {
 
         }
         if (requestCode == Request_code ) {
-            Log.e("TAG", "onActivityResult: in if Bitmap", )
+
             val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
         } else {
 

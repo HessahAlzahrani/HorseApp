@@ -19,6 +19,7 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_start_list.*
 import java.util.zip.Inflater
 
 
@@ -37,28 +38,28 @@ class AddAndEditProfileUserFragment : Fragment() {
     ///aryye of types of authentication like by phone, google, facebook
     //AuthUI.IdpConfig.GoogleBuilder().build()
 
-    val providers = arrayListOf(
-
-        AuthUI.IdpConfig.EmailBuilder().build(),
-        AuthUI.IdpConfig.PhoneBuilder().build(),
-        AuthUI.IdpConfig.GoogleBuilder().build()
-    )
-
-
-    //2// build providers  like : ( AuthUI.IdpConfig.GoogleBuilder().build()........
-    val signInIntent = AuthUI.getInstance()
-        .createSignInIntentBuilder()
-        .setAvailableProviders(providers)
-        .build()
-
-    //3// this function for firebase Auth
-    private val signInLauncher = registerForActivityResult(
-        FirebaseAuthUIActivityResultContract()
-    )
-    {
-            res -> this.onSignInResult(res)
-    }
-
+//    val providers = arrayListOf(
+//
+//        AuthUI.IdpConfig.EmailBuilder().build(),
+//        AuthUI.IdpConfig.PhoneBuilder().build(),
+//        AuthUI.IdpConfig.GoogleBuilder().build()
+//    )
+//
+//
+//    //2// build providers  like : ( AuthUI.IdpConfig.GoogleBuilder().build()........
+//    val signInIntent = AuthUI.getInstance()
+//        .createSignInIntentBuilder()
+//        .setAvailableProviders(providers)
+//        .build()
+//
+//    //3// this function for firebase Auth
+//    private val signInLauncher = registerForActivityResult(
+//        FirebaseAuthUIActivityResultContract()
+//    )
+//    {
+//            res -> this.onSignInResult(res)
+//    }
+//
 
 
     fun validationUI(name: String, content: String,Contact:String,City:String): Boolean {
@@ -97,13 +98,13 @@ class AddAndEditProfileUserFragment : Fragment() {
         return result
     }
 
-
-    /// function Result sign in
-    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            val user = FirebaseAuth.getInstance().currentUser
-        }
-    }
+//
+//    /// function Result sign in
+//    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+//        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+//            val user = FirebaseAuth.getInstance().currentUser
+//        }
+//    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -178,10 +179,10 @@ class AddAndEditProfileUserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        if (FirebaseAuth.getInstance().currentUser == null) {
-            signInLauncher.launch(signInIntent)
-        }
+//
+//        if (FirebaseAuth.getInstance().currentUser == null) {
+//            signInLauncher.launch(signInIntent)
+//        }
         // Inflate the layout for this fragment
         binding = FragmentAddAndEditUserProfileBinding.inflate(inflater, container, false)
         return binding?.root
@@ -213,6 +214,7 @@ class AddAndEditProfileUserFragment : Fragment() {
             val cityUser = binding?.editTextCityAddEdittUserProfileIDText?.text.toString()
             val contactUser = binding?.editTextContactAddEdittUserProfileIDText?.text.toString()
 
+            // coll function for handling error , after function error coll function add
             if (validationUI(nameUser,contentUser,contactUser,cityUser)) {
                 Log.e("TAG", "onViewCreated: Enter")
                 UserProfileViewModel.addFunToCallSuspendFunAddHorseFun_FORUSINGINIT(
@@ -224,10 +226,14 @@ class AddAndEditProfileUserFragment : Fragment() {
                         data_User_contact = contactUser,
                     )
                 )
+
+                findNavController().navigate(R.id.startListFragment2)
             }
+
         }
 
-        binding?.imageViewUsirProfileInAddEditID?.setOnLongClickListener{
+
+        binding?.imageViewUsirProfileInAddEditID?.setOnClickListener{
             Log.e("TAG", "onViewCreatedvbb: ", )
             intentPickImagesFromGaily()
             true

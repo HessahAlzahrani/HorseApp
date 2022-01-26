@@ -29,6 +29,8 @@
     <string name="name">Name</string>
     <string name="add_promotion">Add Promotion</string>
     <string name="content">Content</string>
-    <string name="my_list_promotion" translatable="false">My List Promotion</string>
+    <string name="my_list_promotion">My List Promotion</string>
     <string name="add">add</string>
+    <string name="your_city">your City</string>
+    <string name="save">save</string>
 </resources>

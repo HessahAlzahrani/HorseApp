@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -17,42 +18,45 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
-    lateinit var binding :ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
+    var signIn = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ThemeApplication()
         super.onCreate(savedInstanceState)
-         binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-      //  setContentView(R.layout.activity_main)
+        //  setContentView(R.layout.activity_main)
 
-val bottomNavigationId = binding.bottomNavID
+        val bottomNavigationId = binding.bottomNavID
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerViewss) as NavHostFragment
         navController = navHostFragment.navController
         bottomNavigationId.setupWithNavController(navController)
 
+        binding.bottomNavID.menu.findItem(R.id.addAndEditProfileUserFragment)
+            ?.setOnMenuItemClickListener{
+                if (Firebase.auth.currentUser == null) {
+                    Toast.makeText(this, "please sign in", Toast.LENGTH_SHORT).show()
+                    navController.navigate(R.id.signInFragment)
+                    signIn = true
+                } else if (Firebase.auth.currentUser != null) {
+                    signIn = false
+
+                }
+
+               signIn
+            }
+
     }
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        return navController.navigateUp() || super.onSupportNavigateUp()
-//    }
 
-            // function for get Result intent
-   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Log.e("TAG", "onActivityResult: RERE", )
-    }
-    var launchSomeActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            Log.e("TAG", "onActivityResult:1 RERE", )
-            // your operation...
-        }
-    }*/
 
 
 

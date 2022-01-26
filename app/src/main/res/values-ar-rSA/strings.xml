@@ -21,5 +21,7 @@
     <string name="add_promotion">Add Promotion</string>
     <string name="add_yor_promotion">أضف أ‘علان</string>
     <string name="name">الاسم</string>
-    <string name="add">اضف</string>
+    <string name="add">أضف</string>
+    <string name="content">المحتوى</string>
+    <string name="my_list_promotion">"قائمة اللإعلانات "</string>
 </resources>

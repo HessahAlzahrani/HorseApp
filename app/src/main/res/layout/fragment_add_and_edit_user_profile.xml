@@ -79,7 +79,8 @@
         android:layout_marginTop="8dp"
         android:ems="10"
 
-        android:hint="your City"
+        android:hint="@string/your_city"
+
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/editTextContent_addEditt_UserProfile_ID"
         app:layout_constraintStart_toStartOf="@+id/editTextContent_addEditt_UserProfile_ID"
@@ -149,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:backgroundTint="#3B5336"
-        android:text="save"
+        android:text="@string/save"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="@+id/editTextContact_addEditt_UserProfile_ID"
         app:layout_constraintHorizontal_bias="0.0"

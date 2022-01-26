@@ -114,6 +114,16 @@
             </LinearLayout>
         </ScrollView>
 
+        <ImageView
+            android:id="@+id/icon_cher_details_id"
+            android:layout_width="45dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView10"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_horse_details_fragment_id"
+            app:srcCompat="@drawable/ic_baseline_share_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -1,5 +1,6 @@
 package com.example.horseapp.detailsPromotion
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +24,20 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
 
     //the line for move data from next fragment (in fragment go)
     private val navigationArgs: DetailsPromotionFragmentArgs by navArgs()
+
+
+    private fun sharePromotion() {
+
+        val intent = Intent(Intent.ACTION_SEND)
+            .putExtra(
+                Intent.EXTRA_TEXT,
+                " I like to visit this event $imageList , come with me :)"
+            )
+            .setType("text/plain")
+        if (activity?.packageManager?.resolveActivity(intent, 0) != null) {
+            startActivity(intent)
+        }
+    }
 
 
     override fun onCreateView(
@@ -100,14 +115,10 @@ class DetailsPromotionFragment : Fragment(R.layout.fragment_detals_promotion) {
 
             }
 
-//            /***
-//             *  make photo button action for profile Show
-//             *  */
-//            binding?.imageViewHorseDetailsFragmentId?.setOnClickListener {
-//                val action =
-//                    DetailsPromotionFragmentDirections.actionDetailsPromotionFragmentToShowProfileFragment()
-//                findNavController().navigate(action)
-//            }
+            binding?.iconCherDetailsId?.setOnClickListener{
+                sharePromotion()
+
+            }
         }
 
     }

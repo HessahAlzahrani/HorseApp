@@ -91,4 +91,9 @@
         android:id="@+id/userPrefrenceFragment"
         android:name="com.example.horseapp.prefrence.UserPrefrenceFragment"
         android:label="UserPrefrenceFragment" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.horseapp.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
 </navigation>
